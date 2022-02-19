@@ -1,10 +1,10 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using MyAudio.Views;
-
-namespace MyAudio
+﻿namespace MyAudio
 {
+    using System;
+    using MyAudio.Views;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;
+
     public partial class App : Application
     {
         public App()

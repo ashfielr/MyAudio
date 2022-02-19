@@ -1,12 +1,10 @@
-﻿using System;
-
-using Android.App;
-using Android.Content.PM;
-using Android.Runtime;
-using Android.OS;
-
-namespace MyAudio.Droid
+﻿namespace MyAudio.Droid
 {
+    using Android.App;
+    using Android.Content.PM;
+    using Android.OS;
+    using Android.Runtime;
+
     [Activity(Label = "MyAudio", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
