@@ -23,4 +23,10 @@
   <ItemGroup>
     <Folder Include="ViewModels\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\AudioFilesPage.xaml.cs">
+      <DependentUpon>AudioFilesPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>
