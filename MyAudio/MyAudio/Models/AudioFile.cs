@@ -17,6 +17,13 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="AudioFile"/> class.
         /// </summary>
+        public AudioFile()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AudioFile"/> class.
+        /// </summary>
         /// <param name="id">Unique ID.</param>
         /// <param name="artist">Artist of the audio file.</param>
         /// <param name="albumName">The name of the album the audio file is from.</param>
