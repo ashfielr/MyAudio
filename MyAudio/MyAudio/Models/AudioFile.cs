@@ -8,13 +8,6 @@
     /// </summary>
     internal class AudioFile : IAudioFile
     {
-        private int id;
-        private string title;
-        private string artist;
-        private string albumName;
-        private int duration;
-        private string image;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AudioFile"/> class.
         /// </summary>
@@ -25,20 +18,18 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="AudioFile"/> class.
         /// </summary>
-        /// <param name="id">Unique ID.</param>
         /// /// <param name="title">Title of the audio file.</param>
         /// <param name="artist">Artist of the audio file.</param>
         /// <param name="albumName">The name of the album the audio file is from.</param>
         /// <param name="duration">The length of audio file in seconds.</param>
         /// <param name="image">The path for the image.</param>
-        public AudioFile(int id, string title, string artist, string albumName, int duration, string image)
+        public AudioFile(string title, string artist, string albumName, int duration, string image)
         {
-            this.id = id;
-            this.title = title;
-            this.artist = artist;
-            this.albumName = albumName;
-            this.duration = duration;
-            this.image = image;
+            this.Title = title;
+            this.Artist = artist;
+            this.AlbumName = albumName;
+            this.Duration = duration;
+            this.Image = image;
         }
 
         /// <summary>

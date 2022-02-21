@@ -17,8 +17,8 @@
         public App()
         {
             this.InitializeComponent();
-
-            this.MainPage = new MainPage();
+            IocProvider.Init();
+            this.MainPage = new AudioFilesPage();
         }
 
         /// <summary>

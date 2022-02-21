@@ -13,28 +13,19 @@
     internal class MyAudioDatabase : IMyAudioDataAccess
     {
         /// <summary>
-        /// Gets or sets database instance.
-        /// </summary>
-        private static SQLiteAsyncConnection Database { get; set; }
-
-        /// <summary>
-        /// The singleton intance of database access.
-        /// </summary>
-        public static readonly AsyncLazy<MyAudioDatabase> Instance = new AsyncLazy<MyAudioDatabase>(async () =>
-        {
-            var instance = new MyAudioDatabase();
-            CreateTableResult result = await Database.CreateTableAsync<AudioFile>();
-            return instance;
-        });
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="MyAudioDatabase"/> class.
         /// Opens SQLite database connection.
         /// </summary>
         public MyAudioDatabase()
         {
             Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
+            Database.CreateTableAsync<AudioFile>().Wait();
         }
+
+        /// <summary>
+        /// Gets or sets database instance.
+        /// </summary>
+        private static SQLiteAsyncConnection Database { get; set; }
 
         /// <summary>
         /// Gets all of the audio files.
