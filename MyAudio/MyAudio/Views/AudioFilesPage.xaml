@@ -6,10 +6,9 @@
         <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
             <StackLayout Orientation="Horizontal">
                 <Label Text="Audio Files" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-                <Button Text="Upload" HorizontalOptions="EndAndExpand"/>
+                <Button Text="Upload" HorizontalOptions="EndAndExpand" Command="{Binding UploadAudioFileCommand}"/>
             </StackLayout>
         </Frame>
-
         <CollectionView  ItemsSource="{Binding AudioFiles}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>

@@ -20,6 +20,7 @@
         public static IServiceCollection ConfigureServices(this IServiceCollection services)
         {
             services.AddSingleton<IMyAudioDataAccess, MyAudioDatabase>();
+            services.AddSingleton<IFileImageService, FileImageService>();
             return services;
         }
 
