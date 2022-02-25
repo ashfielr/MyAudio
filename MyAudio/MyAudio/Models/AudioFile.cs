@@ -23,13 +23,15 @@
         /// <param name="albumName">The name of the album the audio file is from.</param>
         /// <param name="duration">The length of audio file in seconds.</param>
         /// <param name="image">The path for the image.</param>
-        public AudioFile(string title, string artist, string albumName, int duration, string image)
+        /// /// <param name="filePath">The file path for the mp3 file.</param>
+        public AudioFile(string title, string artist, string albumName, int duration, string image, string filePath)
         {
             this.Title = title;
             this.Artist = artist;
             this.AlbumName = albumName;
             this.Duration = duration;
             this.Image = image;
+            this.FilePath = filePath;
         }
 
         /// <summary>
@@ -63,5 +65,10 @@
         /// Gets or sets image for the audio file.
         /// </summary>
         public string Image { get; set; }
+
+        /// <summary>
+        /// The file path for the mp3 file.
+        /// </summary>
+        public string FilePath { get; set; }
     }
 }

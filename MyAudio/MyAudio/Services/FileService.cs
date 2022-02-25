@@ -8,8 +8,23 @@
     /// <summary>
     /// Service which provides functionality of saving an image.
     /// </summary>
-    internal class FileImageService : IFileImageService
+    internal class FileService : IFileService
     {
+        private string localDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+
+        /// <summary>
+        /// Copys an mp3 file to the audio files folder.
+        /// </summary>
+        /// <param name="filePath">The file path of original mp3 file.</param>
+        /// <param name="copyName">Name of copy mp3 file.</param>
+        /// <returns>The file path of the copy.</returns>
+        public string CopyMp3(string filePath, string copyName)
+        {
+            string copyFilePath = $"{this.localDataPath}/AudioFiles/{copyName}.mp3";
+            File.Copy(filePath, copyFilePath);
+            return copyFilePath;
+        }
+
         /// <summary>
         /// Saves an image to local app data.
         /// </summary>
@@ -17,13 +32,13 @@
         /// <param name="imageData">The image data in bytes.</param>
         /// <param name="location">Folder to save the image in.</param>
         /// <returns>The file path of the saved image.</returns>
-        public string SaveImage(string fileName, byte[] imageData, string location = "temp")
+        public string SaveImage(string name, byte[] imageData, string location = "temp")
         {
             // See https://stackoverflow.com/a/51040802
-            var folderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            folderPath = Path.Combine(folderPath, location);
+            string folderPath = Path.Combine(this.localDataPath, location);
             Directory.CreateDirectory(folderPath);
 
+            string fileName = $"{name}.jpg";
             string filePath = Path.Combine(folderPath, fileName);
 
             using (FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))

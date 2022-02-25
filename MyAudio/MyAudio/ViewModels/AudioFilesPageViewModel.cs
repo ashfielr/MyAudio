@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.IO;
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Input;
@@ -20,17 +21,17 @@
     internal class AudioFilesPageViewModel : BaseViewModel
     {
         private IMyAudioDataAccess dataAccess;
-        private IFileImageService fileImageService;
+        private IFileService fileService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AudioFilesPageViewModel"/> class.
         /// </summary>
         /// <param name="_dataAccess">The data access for the application.</param>
         /// /// <param name="_fileImageService">Service which allows an image to be saved.</param>
-        public AudioFilesPageViewModel(IMyAudioDataAccess _dataAccess, IFileImageService _fileImageService)
+        public AudioFilesPageViewModel(IMyAudioDataAccess _dataAccess, IFileService _fileImageService)
         {
             dataAccess = _dataAccess;
-            fileImageService = _fileImageService;
+            fileService = _fileImageService;
             UploadAudioFileCommand = new Command(async () => await UploadAudioFile());
         }
 
@@ -77,6 +78,8 @@
             try
             {
                 var result = await FilePicker.PickAsync(options);
+                string timestamp = DateTime.Now.Ticks.ToString();
+                string audioFilePath = fileService.CopyMp3(result.FullPath, timestamp);
                 if (result != null)
                 {
                     if (result.FileName.EndsWith("mp3", StringComparison.OrdinalIgnoreCase))
@@ -88,10 +91,9 @@
                             byte[] image = tag.Pictures[0].PictureData;
 
                             string location = "AudioFiles";
-                            string fileName = $"{DateTime.Now.Ticks}.jpg";
-                            string filePath = fileImageService.SaveImage(fileName, image, location);
-                            AudioFile audioFile = new AudioFile(tag.Title, tag.Artists.ToString(), tag.Album, (int)mp3.Audio.Duration.TotalMilliseconds, filePath);
-                            AudioFiles.Add(audioFile);
+                            string imageFilePath = fileService.SaveImage(timestamp, image, location);
+                            AudioFile audioFile = new AudioFile(tag.Title, tag.Artists.ToString(), tag.Album, (int)mp3.Audio.Duration.TotalMilliseconds, imageFilePath, audioFilePath);
+                            this.AudioFiles.Add(audioFile);
                             await dataAccess.SaveAudioFileAsync(audioFile);
                         }
                     }
