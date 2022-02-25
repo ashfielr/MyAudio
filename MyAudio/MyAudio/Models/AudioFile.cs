@@ -67,7 +67,7 @@
         public string Image { get; set; }
 
         /// <summary>
-        /// The file path for the mp3 file.
+        /// Gets or sets the file path for the mp3 file.
         /// </summary>
         public string FilePath { get; set; }
     }

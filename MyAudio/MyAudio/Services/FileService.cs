@@ -28,7 +28,7 @@
         /// <summary>
         /// Saves an image to local app data.
         /// </summary>
-        /// <param name="fileName">The file name of the image to save.</param>
+        /// <param name="name">The file name of the image to save.</param>
         /// <param name="imageData">The image data in bytes.</param>
         /// <param name="location">Folder to save the image in.</param>
         /// <returns>The file path of the saved image.</returns>
