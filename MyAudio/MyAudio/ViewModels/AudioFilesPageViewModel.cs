@@ -90,7 +90,7 @@
                             string location = "AudioFiles";
                             string fileName = $"{DateTime.Now.Ticks}.jpg";
                             string filePath = fileImageService.SaveImage(fileName, image, location);
-                            AudioFile audioFile = new AudioFile(tag.Title, tag.Artists.ToString(), tag.Album, 123, filePath);
+                            AudioFile audioFile = new AudioFile(tag.Title, tag.Artists.ToString(), tag.Album, (int)mp3.Audio.Duration.TotalMilliseconds, filePath);
                             AudioFiles.Add(audioFile);
                             await dataAccess.SaveAudioFileAsync(audioFile);
                         }
