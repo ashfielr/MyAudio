@@ -22,17 +22,20 @@
     {
         private IMyAudioDataAccess dataAccess;
         private IFileService fileService;
+        private IAudioPlayerService audioPlayerService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AudioFilesPageViewModel"/> class.
         /// </summary>
         /// <param name="_dataAccess">The data access for the application.</param>
         /// /// <param name="_fileImageService">Service which allows an image to be saved.</param>
-        public AudioFilesPageViewModel(IMyAudioDataAccess _dataAccess, IFileService _fileImageService)
+        public AudioFilesPageViewModel(IMyAudioDataAccess _dataAccess, IFileService _fileImageService, IAudioPlayerService _audioPlayerService)
         {
             dataAccess = _dataAccess;
             fileService = _fileImageService;
+            audioPlayerService = _audioPlayerService;
             UploadAudioFileCommand = new Command(async () => await UploadAudioFile());
+            PlayAudioFileCommand = new Command<AudioFile>(audioFile => { PlayAudioFile(SelectedAudioFile); });
         }
 
         /// <summary>
@@ -40,10 +43,14 @@
         /// </summary>
         public ObservableCollection<AudioFile> AudioFiles { get; set; } = new ObservableCollection<AudioFile>();
 
+        public AudioFile SelectedAudioFile { get; set; }
+
         /// <summary>
         /// Gets or sets command to allow user to upload an audio file.
         /// </summary>
         public ICommand UploadAudioFileCommand { get; set; }
+
+        public ICommand PlayAudioFileCommand { get; set; }
 
         /// <summary>
         /// Overrided initialise method for the <see cref="AudioFilesPageViewModel"/> view model.
@@ -61,6 +68,11 @@
             {
                 this.AudioFiles = new ObservableCollection<AudioFile>();
             }
+        }
+
+        public void PlayAudioFile(AudioFile audioFile)
+        {
+            audioPlayerService.Play(audioFile.FilePath);
         }
 
         /// <summary>

@@ -21,6 +21,7 @@
         {
             services.AddSingleton<IMyAudioDataAccess, MyAudioDatabase>();
             services.AddSingleton<IFileService, FileService>();
+            services.AddSingleton<IAudioPlayerService, AudioPlayerService>();
             return services;
         }
 

@@ -11,7 +11,6 @@
     /// </summary>
     internal class MillisecondsToTimeFormatStr : IValueConverter
     {
-        
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var convertedVal = (int)value;
