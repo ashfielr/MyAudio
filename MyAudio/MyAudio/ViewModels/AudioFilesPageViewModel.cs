@@ -28,14 +28,15 @@
         /// Initializes a new instance of the <see cref="AudioFilesPageViewModel"/> class.
         /// </summary>
         /// <param name="_dataAccess">The data access for the application.</param>
-        /// /// <param name="_fileImageService">Service which allows an image to be saved.</param>
+        /// <param name="_fileImageService">Service which allows an image to be saved.</param>
+        /// <param name="_audioPlayerService">Service which allows playback of audio files.</param>
         public AudioFilesPageViewModel(IMyAudioDataAccess _dataAccess, IFileService _fileImageService, IAudioPlayerService _audioPlayerService)
         {
             dataAccess = _dataAccess;
             fileService = _fileImageService;
             audioPlayerService = _audioPlayerService;
             UploadAudioFileCommand = new Command(async () => await UploadAudioFile());
-            PlayAudioFileCommand = new Command<AudioFile>(audioFile => { PlayAudioFile(SelectedAudioFile); });
+            PlayAudioFileCommand = new Command(PlayAudioFile);
         }
 
         /// <summary>
@@ -43,6 +44,9 @@
         /// </summary>
         public ObservableCollection<AudioFile> AudioFiles { get; set; } = new ObservableCollection<AudioFile>();
 
+        /// <summary>
+        /// Gets or sets the currently selected audio file.
+        /// </summary>
         public AudioFile SelectedAudioFile { get; set; }
 
         /// <summary>
@@ -50,6 +54,9 @@
         /// </summary>
         public ICommand UploadAudioFileCommand { get; set; }
 
+        /// <summary>
+        /// Gets or sets command to play an audio file.
+        /// </summary>
         public ICommand PlayAudioFileCommand { get; set; }
 
         /// <summary>
@@ -70,9 +77,12 @@
             }
         }
 
-        public void PlayAudioFile(AudioFile audioFile)
+        /// <summary>
+        /// Plays the selected audio file.
+        /// </summary>
+        public void PlayAudioFile()
         {
-            audioPlayerService.Play(audioFile.FilePath);
+            audioPlayerService.Play(SelectedAudioFile.FilePath);
         }
 
         /// <summary>

@@ -14,7 +14,10 @@
                 <Button Text="Upload" HorizontalOptions="EndAndExpand" Command="{Binding UploadAudioFileCommand}"/>
             </StackLayout>
         </Frame>
-        <CollectionView  ItemsSource="{Binding AudioFiles}">
+        <CollectionView  ItemsSource="{Binding AudioFiles}"
+                         SelectionMode="Single"
+                         SelectedItem="{Binding SelectedAudioFile, Mode=TwoWay}"
+                         SelectionChangedCommand="{Binding PlayAudioFileCommand}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="5,5,5,5" MinimumHeightRequest="50" BackgroundColor="White">
