@@ -36,7 +36,7 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-
+        <Button Text="||" />
     </StackLayout>
 
 </ContentPage>

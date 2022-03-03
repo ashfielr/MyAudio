@@ -14,5 +14,10 @@
         /// </summary>
         /// <param name="filePath">The file path of audio file to playback.</param>
         void Play(string filePath);
+
+        /// <summary>
+        /// Pauses the currently playing file.
+        /// </summary>
+        void Pause();
     }
 }
