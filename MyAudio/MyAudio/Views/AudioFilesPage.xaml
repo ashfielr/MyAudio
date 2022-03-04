@@ -14,7 +14,7 @@
                 <Button Text="Upload" HorizontalOptions="EndAndExpand" Command="{Binding UploadAudioFileCommand}"/>
             </StackLayout>
         </Frame>
-        <CollectionView  ItemsSource="{Binding AudioFiles}"
+        <CollectionView  ItemsSource="{Binding AudioFiles, Mode=OneWay}"
                          SelectionMode="Single"
                          SelectedItem="{Binding SelectedAudioFile, Mode=TwoWay}"
                          SelectionChangedCommand="{Binding PlayAudioFileCommand}">
@@ -22,11 +22,11 @@
                 <DataTemplate>
                     <Grid Padding="5,5,5,5" MinimumHeightRequest="50" BackgroundColor="White">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="60" />
                             <ColumnDefinition Width="4*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="{Binding Image, Mode=OneWay}" BackgroundColor="Gray" WidthRequest="50" HeightRequest="50" HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="AspectFill"/>
+                        <Image Grid.Column="0" Source="{Binding Image, Mode=OneWay}" BackgroundColor="Gray" WidthRequest="50" HeightRequest="50" Aspect="AspectFill"/>
                         <StackLayout Grid.Column="1" VerticalOptions="CenterAndExpand" Margin="5,0,0,0">
                             <Label Text="{Binding Title, Mode=OneWay}" FontAttributes="Bold"/>
                             <Label Text="{Binding Artist, Mode=OneWay}" />

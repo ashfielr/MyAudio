@@ -23,6 +23,7 @@
         private IMyAudioDataAccess dataAccess;
         private IFileService fileService;
         private IAudioPlayerService audioPlayerService;
+        private ObservableCollection<AudioFile> audioFiles;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AudioFilesPageViewModel"/> class.
@@ -42,7 +43,15 @@
         /// <summary>
         /// Gets or sets the collection of audio files which implement <see cref="IAudioFile"/>.
         /// </summary>
-        public ObservableCollection<AudioFile> AudioFiles { get; set; } = new ObservableCollection<AudioFile>();
+        public ObservableCollection<AudioFile> AudioFiles
+        {
+            get => audioFiles;
+            set
+            {
+                audioFiles = value;
+                OnPropertyChanged(nameof(AudioFiles));
+            }
+        }
 
         /// <summary>
         /// Gets or sets the currently selected audio file.
@@ -66,15 +75,12 @@
         public override async Task Initialise()
         {
             var currentAudioFiles = await this.dataAccess.GetAudioFilesAsync();
-
+            this.AudioFiles = new ObservableCollection<AudioFile>();
             if (currentAudioFiles.Count > 0)
             {
                 currentAudioFiles.ForEach(audioFile => this.AudioFiles.Add(audioFile));
             }
-            else
-            {
-                this.AudioFiles = new ObservableCollection<AudioFile>();
-            }
+
         }
 
         /// <summary>
@@ -115,8 +121,8 @@
                             string location = "AudioFiles";
                             string imageFilePath = fileService.SaveImage(timestamp, image, location);
                             AudioFile audioFile = new AudioFile(tag.Title, tag.Artists.ToString(), tag.Album, (int)mp3.Audio.Duration.TotalMilliseconds, imageFilePath, audioFilePath);
-                            this.AudioFiles.Add(audioFile);
                             await dataAccess.SaveAudioFileAsync(audioFile);
+                            this.AudioFiles.Add(audioFile);
                         }
                     }
                 }

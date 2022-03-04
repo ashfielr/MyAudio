@@ -35,7 +35,7 @@
         {
             try
             {
-                await (this.BindingContext as AudioFilesPageViewModel).Initialise();
+                await (BindingContext as AudioFilesPageViewModel).Initialise();
             }
             catch (Exception error)
             {
