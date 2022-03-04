@@ -20,7 +20,13 @@
         /// <returns>The file path of the copy.</returns>
         public string CopyMp3(string filePath, string copyName)
         {
-            string copyFilePath = $"{this.localDataPath}/AudioFiles/{copyName}.mp3";
+            string destDir = $"{this.localDataPath}/AudioFiles";
+            if (!Directory.Exists(destDir))
+            {
+                Directory.CreateDirectory(destDir);
+            }
+
+            string copyFilePath = $"{destDir}/{copyName}.mp3";
             File.Copy(filePath, copyFilePath);
             return copyFilePath;
         }
