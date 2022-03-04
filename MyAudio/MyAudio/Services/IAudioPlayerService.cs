@@ -19,7 +19,8 @@
         /// Plays an audio file.
         /// </summary>
         /// <param name="filePath">The path of the audio file to play.</param>
-        void Play(string filePath);
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation of playing an audio file.</placeholder></returns>
+        Task Play(string filePath);
 
         /// <summary>
         /// Pauses the currently playing file.
@@ -29,6 +30,7 @@
         /// <summary>
         /// Switches the audio state (playing or paused).
         /// </summary>
-        void ChangeCurrentAudioState();
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation of changing the current audio playback state.</placeholder></returns>
+        Task ChangeCurrentAudioState();
     }
 }

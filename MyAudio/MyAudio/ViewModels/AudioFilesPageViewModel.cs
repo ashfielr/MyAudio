@@ -39,8 +39,8 @@
             fileService = _fileImageService;
             audioPlayerService = _audioPlayerService;
             UploadAudioFileCommand = new Command(async () => await UploadAudioFile());
-            PlayAudioFileCommand = new Command(PlayAudioFile);
-            ChangeAudioStateCommand = new Command(ChangeAudioState);
+            PlayAudioFileCommand = new Command(async () => await PlayAudioFile());
+            ChangeAudioStateCommand = new Command(async () => await ChangeAudioState());
         }
 
         /// <summary>
@@ -120,9 +120,10 @@
         /// <summary>
         /// Plays the selected audio file.
         /// </summary>
-        public void PlayAudioFile()
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation of playing an audio file.</placeholder></returns>
+        public async Task PlayAudioFile()
         {
-            audioPlayerService.Play(SelectedAudioFile.FilePath);
+            await audioPlayerService.Play(SelectedAudioFile.FilePath);
             UpdateAudioStateImg();
         }
 
@@ -172,9 +173,13 @@
             return null;
         }
 
-        private void ChangeAudioState()
+        /// <summary>
+        /// Switches the audio state (playing or paused).
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation of changing the current audio playback state.</placeholder></returns>
+        private async Task ChangeAudioState()
         {
-            audioPlayerService.ChangeCurrentAudioState();
+            await audioPlayerService.ChangeCurrentAudioState();
             UpdateAudioStateImg();
         }
 

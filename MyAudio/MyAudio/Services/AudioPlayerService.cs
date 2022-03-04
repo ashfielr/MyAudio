@@ -20,15 +20,16 @@
         /// <summary>
         /// Switches the audio state (playing or paused).
         /// </summary>
-        public void ChangeCurrentAudioState()
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation of changing the current audio playback state.</placeholder></returns>
+        public async Task ChangeCurrentAudioState()
         {
             if (CrossMediaManager.Current.IsPlaying())
             {
-                CrossMediaManager.Current.Pause().Wait();
+                await CrossMediaManager.Current.Pause();
             }
             else
             {
-                CrossMediaManager.Current.Play().Wait();
+                await CrossMediaManager.Current.Play();
             }
         }
 
@@ -44,9 +45,10 @@
         /// Plays an audio file.
         /// </summary>
         /// <param name="filePath">The file path of audio file to playback.</param>
-        public void Play(string filePath)
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation of playing an audio file.</placeholder></returns>
+        public async Task Play(string filePath)
         {
-            CrossMediaManager.Current.Play(filePath).Wait();
+            await CrossMediaManager.Current.Play(filePath);
         }
     }
 }
