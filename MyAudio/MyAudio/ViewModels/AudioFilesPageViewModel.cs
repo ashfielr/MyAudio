@@ -24,6 +24,8 @@
         private IFileService fileService;
         private IAudioPlayerService audioPlayerService;
         private ObservableCollection<AudioFile> audioFiles;
+        private AudioFile selectedAudioFile;
+        private string currentAudioStateImg;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AudioFilesPageViewModel"/> class.
@@ -38,6 +40,7 @@
             audioPlayerService = _audioPlayerService;
             UploadAudioFileCommand = new Command(async () => await UploadAudioFile());
             PlayAudioFileCommand = new Command(PlayAudioFile);
+            ChangeAudioStateCommand = new Command(ChangeAudioState);
         }
 
         /// <summary>
@@ -54,9 +57,36 @@
         }
 
         /// <summary>
+        /// Gets or sets the current audio state image (play or pause image).
+        /// </summary>
+        public string CurrentAudioStateImg
+        {
+            get => currentAudioStateImg;
+            set
+            {
+                if (value != currentAudioStateImg)
+                {
+                    currentAudioStateImg = value;
+                    OnPropertyChanged(nameof(CurrentAudioStateImg));
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the currently selected audio file.
         /// </summary>
-        public AudioFile SelectedAudioFile { get; set; }
+        public AudioFile SelectedAudioFile
+        {
+            get => selectedAudioFile;
+            set
+            {
+                if (value != selectedAudioFile)
+                {
+                    selectedAudioFile = value;
+                    OnPropertyChanged(nameof(SelectedAudioFile));
+                }
+            }
+        }
 
         /// <summary>
         /// Gets or sets command to allow user to upload an audio file.
@@ -67,6 +97,11 @@
         /// Gets or sets command to play an audio file.
         /// </summary>
         public ICommand PlayAudioFileCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets command to change audio state (playing or paused).
+        /// </summary>
+        public ICommand ChangeAudioStateCommand { get; set; }
 
         /// <summary>
         /// Overrided initialise method for the <see cref="AudioFilesPageViewModel"/> view model.
@@ -80,7 +115,6 @@
             {
                 currentAudioFiles.ForEach(audioFile => this.AudioFiles.Add(audioFile));
             }
-
         }
 
         /// <summary>
@@ -89,6 +123,7 @@
         public void PlayAudioFile()
         {
             audioPlayerService.Play(SelectedAudioFile.FilePath);
+            UpdateAudioStateImg();
         }
 
         /// <summary>
@@ -135,6 +170,25 @@
             }
 
             return null;
+        }
+
+        private void ChangeAudioState()
+        {
+            audioPlayerService.ChangeCurrentAudioState();
+            UpdateAudioStateImg();
+        }
+
+        private void UpdateAudioStateImg()
+        {
+            // Update image for button state
+            if (audioPlayerService.IsPlaying)
+            {
+                CurrentAudioStateImg = "PauseButton.png";
+            }
+            else
+            {
+                CurrentAudioStateImg = "PlayButton.png";
+            }
         }
     }
 }

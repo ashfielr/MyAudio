@@ -96,13 +96,16 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\drawable\" />
+    <AndroidResource Include="Resources\drawable\PauseButton.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyAudio\MyAudio.csproj">
       <Project>{E86D6C5D-7DF9-413D-8C50-B58B3A88933A}</Project>
       <Name>MyAudio</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\PlayButton.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

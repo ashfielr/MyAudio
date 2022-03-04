@@ -36,7 +36,19 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <Button Text="||" />
+        <Grid Padding="5,5,5,5" MinimumHeightRequest="50" BackgroundColor="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="45" />
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Source="{Binding SelectedAudioFile.Image, Mode=OneWay}" BackgroundColor="Gray" WidthRequest="50" HeightRequest="50" Aspect="AspectFill"/>
+            <StackLayout Grid.Column="1" VerticalOptions="CenterAndExpand" Margin="5,0,0,0">
+                <Label Text="{Binding SelectedAudioFile.Title, Mode=OneWay}" FontAttributes="Bold"/>
+                <Label Text="{Binding SelectedAudioFile.Artist, Mode=OneWay}" />
+            </StackLayout>
+            <ImageButton Margin="0,0,10,0"  Grid.Column="2" Command="{Binding ChangeAudioStateCommand}" Source="{Binding CurrentAudioStateImg}" WidthRequest="30" HeightRequest="30" BackgroundColor="Transparent"/>
+        </Grid>
     </StackLayout>
 
 </ContentPage>
