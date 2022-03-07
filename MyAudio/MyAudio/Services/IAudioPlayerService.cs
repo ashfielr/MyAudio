@@ -11,9 +11,9 @@
     internal interface IAudioPlayerService
     {
         /// <summary>
-        /// Gets a value indicating whether an audio file is playing.
+        /// Gets or sets a value indicating whether an audio file is playing.
         /// </summary>
-        bool IsPlaying { get; }
+        bool IsPlaying { get; set; }
 
         /// <summary>
         /// Plays an audio file.
@@ -21,11 +21,6 @@
         /// <param name="filePath">The path of the audio file to play.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation of playing an audio file.</placeholder></returns>
         Task Play(string filePath);
-
-        /// <summary>
-        /// Pauses the currently playing file.
-        /// </summary>
-        void Pause();
 
         /// <summary>
         /// Switches the audio state (playing or paused).

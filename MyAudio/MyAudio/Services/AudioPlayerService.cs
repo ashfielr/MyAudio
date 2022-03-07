@@ -13,9 +13,9 @@
     internal class AudioPlayerService : IAudioPlayerService
     {
         /// <summary>
-        /// Gets a value indicating whether an audio file is playing.
+        /// Gets or sets a value indicating whether an audio file is playing.
         /// </summary>
-        public bool IsPlaying => CrossMediaManager.Current.IsPlaying();
+        public bool IsPlaying { get; set; } = false;
 
         /// <summary>
         /// Switches the audio state (playing or paused).
@@ -26,19 +26,13 @@
             if (CrossMediaManager.Current.IsPlaying())
             {
                 await CrossMediaManager.Current.Pause();
+                IsPlaying = false;
             }
             else
             {
                 await CrossMediaManager.Current.Play();
+                IsPlaying = true;
             }
-        }
-
-        /// <summary>
-        /// Pauses the player.
-        /// </summary>
-        public void Pause()
-        {
-            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -49,6 +43,7 @@
         public async Task Play(string filePath)
         {
             await CrossMediaManager.Current.Play(filePath);
+            IsPlaying = true;
         }
     }
 }
