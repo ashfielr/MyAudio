@@ -32,7 +32,11 @@
         public AddPlaylistPageViewModel(IMyAudioDataAccess _dataAccess)
         {
             this.dataAccess = _dataAccess;
-            this.CreatePlaylistCommand = new Command(async () => await CreatePlaylist());
+            this.CreatePlaylistCommand = new Command(async () =>
+            {
+                await CreatePlaylist();
+                Shell.Current.SendBackButtonPressed();
+            });
         }
 
         /// <summary>
