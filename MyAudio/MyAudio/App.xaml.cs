@@ -10,7 +10,7 @@
     /// </summary>
     public partial class App : Application
     {
-        /// <summary>
+        /// <summary>   
         /// Initializes a new instance of the <see cref="App"/> class.
         /// Starts the app.
         /// </summary>
@@ -18,7 +18,7 @@
         {
             this.InitializeComponent();
             IocProvider.Init();
-            this.MainPage = new PlaylistsPage();
+            this.MainPage = new AppShell();
         }
 
         /// <summary>
