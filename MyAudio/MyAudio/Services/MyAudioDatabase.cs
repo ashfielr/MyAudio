@@ -72,5 +72,15 @@
         {
             return Database.DeleteAsync(audioFile);
         }
+
+        public List<Playlist> GetPlaylists()
+        {
+            List<int> audioFileIDs = new List<int>() { 1, 2, 3 };
+            Playlist playlist = new Playlist("My Playlist", audioFileIDs,"PlayButton.png",12345);
+            List<Playlist> playlists = new List<Playlist>();
+            playlists.Add(playlist);
+            return playlists;
+            //return Database.Table<Playlist>().ToListAsync();
+        }
     }
 }

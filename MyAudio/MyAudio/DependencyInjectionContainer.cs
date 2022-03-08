@@ -44,6 +44,7 @@
         public static IServiceCollection ConfigureViewModels(this IServiceCollection services)
         {
             services.AddTransient<AudioFilesPageViewModel>();
+            services.AddTransient<PlaylistsPageViewModel>();
             return services;
         }
     }

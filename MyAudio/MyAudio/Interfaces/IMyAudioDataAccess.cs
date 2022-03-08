@@ -36,5 +36,11 @@
         /// <param name="audioFile">The audio file to be deleted.</param>
         /// <returns>The number of rows deleted.</returns>
         Task<int> DeleteAudioFileAsync(IAudioFile audioFile);
+
+        /// <summary>
+        /// Gets all the existing playlists.
+        /// </summary>
+        /// <returns>The list of existing playlists.</returns>
+        List<Playlist> GetPlaylists();
     }
 }

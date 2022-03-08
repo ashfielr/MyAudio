@@ -28,6 +28,7 @@
         {
             this.Title = title;
             this.AudioFileIDs = audioFileIDs;
+            this.Image = image;
             this.NumOfAudioFiles = audioFileIDs.Count;
             this.TotalDuration = totalDuration;
         }

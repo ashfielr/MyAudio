@@ -18,7 +18,7 @@
         {
             this.InitializeComponent();
             IocProvider.Init();
-            this.MainPage = new AudioFilesPage();
+            this.MainPage = new PlaylistsPage();
         }
 
         /// <summary>
