@@ -14,7 +14,7 @@
     /// </summary>
     internal class AddPlaylistPageViewModel : BaseViewModel
     {
-        private ObservableCollection<AudioFile> audioFiles;
+        private ObservableCollection<PlaylistAudioFile> playlistAudioFile;
         private IMyAudioDataAccess dataAccess;
 
         /// <summary>
@@ -34,17 +34,22 @@
         }
 
         /// <summary>
-        /// Gets or sets the collection of audio files which implement <see cref="IAudioFile"/>.
+        /// Gets or sets the collection of audio files from which user selects ones to be added.
         /// </summary>
-        public ObservableCollection<AudioFile> AudioFiles
+        public ObservableCollection<PlaylistAudioFile> PlaylistAudioFiles
         {
-            get => audioFiles;
+            get => playlistAudioFile;
             set
             {
-                audioFiles = value;
-                OnPropertyChanged(nameof(AudioFiles));
+                playlistAudioFile = value;
+                OnPropertyChanged(nameof(PlaylistAudioFiles));
             }
         }
+
+        /// <summary>
+        /// Gets or sets the name to be given to the playlist being created.
+        /// </summary>
+        public string PlaylistName { get; set; }
 
         /// <summary>
         /// Gets or sets the command to create a new playlist with the audio files selected.
@@ -58,10 +63,10 @@
         public async override Task Initialise()
         {
             var currentAudioFiles = await this.dataAccess.GetAudioFilesAsync();
-            this.AudioFiles = new ObservableCollection<AudioFile>();
+            this.PlaylistAudioFiles = new ObservableCollection<PlaylistAudioFile>();
             if (currentAudioFiles.Count > 0)
             {
-                currentAudioFiles.ForEach(audioFile => this.AudioFiles.Add(audioFile));
+                currentAudioFiles.ForEach(audioFile => this.PlaylistAudioFiles.Add(new PlaylistAudioFile(audioFile, false)));
             }
         }
 
@@ -69,5 +74,24 @@
         //{
         //    Playlist playlist = new Playlist();
         //}
+
+        public struct PlaylistAudioFile
+        {
+            public PlaylistAudioFile(AudioFile _audioFile, bool _isSelected)
+            {
+                AudioFile = _audioFile;
+                IsSelected = _isSelected;
+            }
+
+            /// <summary>
+            /// Gets or sets <see cref="Models.AudioFile"/> instance to be considered to be added to playlist.
+            /// </summary>
+            public AudioFile AudioFile { get; set; }
+
+            /// <summary>
+            /// Gets or sets a value indicating whether the audio file has been selected to be added to the playlist.
+            /// </summary>
+            public bool IsSelected { get; set; }
+        }
     }
 }
