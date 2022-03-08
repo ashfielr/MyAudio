@@ -1,5 +1,6 @@
 ﻿namespace MyAudio
 {
+    using MyAudio.Views;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -14,6 +15,7 @@
         public AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute("Playlists/AddPlaylist", typeof(AddPlaylistPage));
         }
     }
 }
