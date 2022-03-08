@@ -116,7 +116,7 @@
         }
 
         /// <summary>
-        /// Struct to encapsulate an <see cref="AudioFile"/> instance with a boolean value indicatin whether to add it to the playlist.
+        /// Class to encapsulate an <see cref="AudioFile"/> instance with a boolean value indicatin whether to add it to the playlist.
         /// </summary>
         public class PlaylistAudioFile
         {
