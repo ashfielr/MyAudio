@@ -5,6 +5,7 @@
     using System.Collections.ObjectModel;
     using System.Text;
     using System.Threading.Tasks;
+    using System.Windows.Input;
     using MyAudio.Interfaces;
     using MyAudio.Models;
 
@@ -46,6 +47,11 @@
         }
 
         /// <summary>
+        /// Gets or sets the command to create a new playlist with the audio files selected.
+        /// </summary>
+        public ICommand CreatePlaylistCommand { get; set; }
+
+        /// <summary>
         /// Function which deals with initialising the view model.
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation of initialising the view model.</placeholder></returns>
@@ -58,5 +64,10 @@
                 currentAudioFiles.ForEach(audioFile => this.AudioFiles.Add(audioFile));
             }
         }
+
+        //private Task CreatePlaylist()
+        //{
+        //    Playlist playlist = new Playlist();
+        //}
     }
 }
