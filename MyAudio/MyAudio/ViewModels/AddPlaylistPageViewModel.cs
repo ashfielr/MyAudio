@@ -8,6 +8,7 @@
     using System.Windows.Input;
     using MyAudio.Interfaces;
     using MyAudio.Models;
+    using Xamarin.Forms;
 
     /// <summary>
     /// View model for the AddPlaylistPage.
@@ -31,6 +32,7 @@
         public AddPlaylistPageViewModel(IMyAudioDataAccess _dataAccess)
         {
             this.dataAccess = _dataAccess;
+            this.CreatePlaylistCommand = new Command(async () => await CreatePlaylist());
         }
 
         /// <summary>
@@ -70,12 +72,19 @@
             }
         }
 
-        private void CreatePlaylist()
+        private Task<int> CreatePlaylist()
         {
             Playlist playlist = new Playlist();
             playlist.Title = this.PlaylistName;
-            playlist.AudioFileIDs = GetSelectedAudioFileIDs();
+            List<int> audioFileIDs = GetSelectedAudioFileIDs();
+            foreach (int audioFileID in audioFileIDs)
+            {
+               this.dataAccess.SaveAudioFilePlaylistAsync(new AudioFilePlaylist(audioFileID, playlist.ID));
+            }
+
+            playlist.NumOfAudioFiles = audioFileIDs.Count;
             playlist.TotalDuration = GetPlaylistDuration();
+            return this.dataAccess.SavePlaylistAsync(playlist);
         }
 
         private int GetPlaylistDuration()
@@ -109,12 +118,14 @@
         /// <summary>
         /// Struct to encapsulate an <see cref="AudioFile"/> instance with a boolean value indicatin whether to add it to the playlist.
         /// </summary>
-        public struct PlaylistAudioFile
+        public class PlaylistAudioFile
         {
-            public PlaylistAudioFile(AudioFile _audioFile, bool _isSelected)
+            private bool isSelected;
+
+            public PlaylistAudioFile(AudioFile _audioFile, bool _isSelected = false)
             {
                 AudioFile = _audioFile;
-                IsSelected = _isSelected;
+                isSelected = _isSelected;
             }
 
             /// <summary>
@@ -125,7 +136,17 @@
             /// <summary>
             /// Gets or sets a value indicating whether the audio file has been selected to be added to the playlist.
             /// </summary>
-            public bool IsSelected { get; set; }
+            public bool IsSelected
+            {
+                get => isSelected;
+                set
+                {
+                    if (isSelected != value)
+                    {
+                        isSelected = value;
+                    }
+                }
+            }
         }
     }
 }

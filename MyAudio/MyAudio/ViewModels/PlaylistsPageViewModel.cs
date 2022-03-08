@@ -53,7 +53,7 @@
         public override async Task Initialise()
         {
             await Task.Delay(1);
-            var currentPlaylists = this.dataAccess.GetPlaylists();
+            var currentPlaylists = await this.dataAccess.GetPlaylists();
             this.Playlists = new ObservableCollection<Playlist>();
             if (currentPlaylists.Count > 0)
             {

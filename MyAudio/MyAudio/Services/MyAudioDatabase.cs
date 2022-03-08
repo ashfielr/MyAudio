@@ -19,7 +19,9 @@
         public MyAudioDatabase()
         {
             Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
+            Database.CreateTableAsync<Playlist>().Wait();
             Database.CreateTableAsync<AudioFile>().Wait();
+            Database.CreateTableAsync<AudioFilePlaylist>().Wait();
         }
 
         /// <summary>
@@ -77,14 +79,38 @@
         /// Gets all the playlists.
         /// </summary>
         /// <returns>A collection of the existing playists.</returns>
-        public List<Playlist> GetPlaylists()
+        public Task<List<Playlist>> GetPlaylists()
         {
-            List<int> audioFileIDs = new List<int>() { 1, 2, 3 };
-            Playlist playlist = new Playlist("My Playlist", audioFileIDs, "PlayButton.png", 12345);
-            List<Playlist> playlists = new List<Playlist>();
-            playlists.Add(playlist);
-            return playlists;
-            // return Database.Table<Playlist>().ToListAsync();
+            //List<int> audioFileIDs = new List<int>() { 1, 2, 3 };
+            //Playlist playlist = new Playlist("My Playlist", audioFileIDs, "PlayButton.png", 12345);
+            //List<Playlist> playlists = new List<Playlist>();
+            //playlists.Add(playlist);
+            //return playlists;
+            return Database.Table<Playlist>().ToListAsync();
+        }
+
+        public Task<int> SaveAudioFilePlaylistAsync(IAudioFilePlaylist afp)
+        {
+            if (afp.ID != 0)
+            {
+                return Database.UpdateAsync(afp);
+            }
+            else
+            {
+                return Database.InsertAsync(afp);
+            }
+        }
+
+        public Task<int> SavePlaylistAsync(IPlaylist playlist)
+        {
+            if (playlist.ID != 0)
+            {
+                return Database.UpdateAsync(playlist);
+            }
+            else
+            {
+                return Database.InsertAsync(playlist);
+            }
         }
     }
 }

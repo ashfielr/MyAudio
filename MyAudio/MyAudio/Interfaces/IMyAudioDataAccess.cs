@@ -40,7 +40,11 @@
         /// <summary>
         /// Gets all the existing playlists.
         /// </summary>
-        /// <returns>The list of existing playlists.</returns>
-        List<Playlist> GetPlaylists();
+        /// <returns>An asynchronous task for returning the list of existing playlists.</returns>
+        Task<List<Playlist>> GetPlaylists();
+
+        Task<int> SaveAudioFilePlaylistAsync(IAudioFilePlaylist afp);
+
+        Task<int> SavePlaylistAsync(IPlaylist playlist);
     }
 }

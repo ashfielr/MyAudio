@@ -32,7 +32,7 @@
                                     <Label Text="{Binding AudioFile.Title, Mode=OneWay}" FontAttributes="Bold"/>
                                     <Label Text="{Binding AudioFile.Artist, Mode=OneWay}" />
                             </StackLayout>
-                            <CheckBox Grid.Column="2" IsChecked="{Binding IsSelected}"/>
+                            <CheckBox Grid.Column="2" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

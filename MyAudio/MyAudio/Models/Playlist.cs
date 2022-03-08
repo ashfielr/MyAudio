@@ -3,12 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using MyAudio.Interfaces;
     using SQLite;
 
     /// <summary>
     /// Class for a playlist of audio files.
     /// </summary>
-    internal class Playlist
+    internal class Playlist : IPlaylist
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Playlist"/> class.
@@ -21,15 +22,14 @@
         /// Initializes a new instance of the <see cref="Playlist"/> class.
         /// </summary>
         /// /// <param name="title">Title of the audio file.</param>
-        /// <param name="audioFileIDs">The collection of IDs of the audio files in the playlist.</param>
+        /// <param name="numOfAudioFiles">The number of audio files in the playlist.</param>
         /// <param name="image">The path for the image.</param>
         /// <param name="totalDuration">The total duration of the audio files in the playlist.</param>
-        public Playlist(string title, List<int> audioFileIDs, string image, int totalDuration)
+        public Playlist(string title, int numOfAudioFiles, string image, int totalDuration)
         {
             this.Title = title;
-            this.AudioFileIDs = audioFileIDs;
             this.Image = image;
-            this.NumOfAudioFiles = audioFileIDs.Count;
+            this.NumOfAudioFiles = numOfAudioFiles;
             this.TotalDuration = totalDuration;
         }
 
@@ -46,19 +46,14 @@
         public string Title { get; set; }
 
         /// <summary>
-        /// Gets or sets the collection of audio files in the playlist.
-        /// </summary>
-        public List<int> AudioFileIDs { get; set; }
-
-        /// <summary>
         /// Gets or sets image for the playlist.
         /// </summary>
         public string Image { get; set; }
 
         /// <summary>
-        /// Gets the number of audio files in playlist.
+        /// Gets or sets the number of audio files in playlist.
         /// </summary>
-        public int NumOfAudioFiles { get; }
+        public int NumOfAudioFiles { get; set; }
 
         /// <summary>
         /// Gets or sets the total duration of all audio files in the playlist.

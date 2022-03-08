@@ -20,11 +20,6 @@
         string Title { get; set; }
 
         /// <summary>
-        /// Gets or sets the collection of audio files in the playlist.
-        /// </summary>
-        List<int> AudioFileIDs { get; set; }
-
-        /// <summary>
         /// Gets or sets image for the playlist.
         /// </summary>
         string Image { get; set; }
