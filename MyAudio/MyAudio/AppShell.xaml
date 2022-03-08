@@ -5,7 +5,7 @@
              xmlns:views="clr-namespace:MyAudio.Views">
     <TabBar>
         <ShellContent   Title="AudioFiles"
-                        Icon="AudioFilesIcon.png"
+                        Icon="AudioFilesIcon.png"   
                         Shell.NavBarIsVisible="false"
                         ContentTemplate="{DataTemplate views:AudioFilesPage}" />
         <ShellContent   Title="Playlists"

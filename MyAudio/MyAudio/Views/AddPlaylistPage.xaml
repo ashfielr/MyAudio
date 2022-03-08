@@ -4,9 +4,34 @@
              x:Class="MyAudio.Views.AddPlaylistPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Add Playlist" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+                    <Button Text="Create" HorizontalOptions="EndAndExpand" Command="{Binding CreatePlaylistCommand}"/>
+                </StackLayout>
+            </Frame>
+            <CollectionView  ItemsSource="{Binding AudioFiles, Mode=OneWay}"
+                         SelectionMode="Single"
+                         SelectedItem="{Binding SelectedAudioFile, Mode=TwoWay}"
+                         SelectionChangedCommand="{Binding AudioFileSelectedCommand}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="5,5,5,5" MinimumHeightRequest="50" BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition Width="4*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="{Binding Image, Mode=OneWay}" BackgroundColor="Gray" WidthRequest="50" HeightRequest="50" Aspect="AspectFill"/>
+                            <StackLayout Grid.Column="1" VerticalOptions="CenterAndExpand" Margin="5,0,0,0">
+                                <Label Text="{Binding Title, Mode=OneWay}" FontAttributes="Bold"/>
+                                <Label Text="{Binding Artist, Mode=OneWay}" />
+                            </StackLayout>
+                            <CheckBox />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
