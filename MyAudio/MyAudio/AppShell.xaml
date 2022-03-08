@@ -5,10 +5,12 @@
              xmlns:views="clr-namespace:MyAudio.Views">
     <TabBar>
         <ShellContent   Title="AudioFiles"
-                            Icon="AudioFilesIcon.png"
-                            ContentTemplate="{DataTemplate views:AudioFilesPage}" />
+                        Icon="AudioFilesIcon.png"
+                        Shell.NavBarIsVisible="false"
+                        ContentTemplate="{DataTemplate views:AudioFilesPage}" />
         <ShellContent   Title="Playlists"
-                            Icon="PlaylistsIcon.png"
-                            ContentTemplate="{DataTemplate views:PlaylistsPage}" />
+                        Icon="PlaylistsIcon.png"
+                        Shell.NavBarIsVisible="false"
+                        ContentTemplate="{DataTemplate views:PlaylistsPage}" />
     </TabBar>
 </Shell>
