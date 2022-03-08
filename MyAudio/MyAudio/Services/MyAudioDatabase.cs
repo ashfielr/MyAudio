@@ -73,6 +73,10 @@
             return Database.DeleteAsync(audioFile);
         }
 
+        /// <summary>
+        /// Gets all the playlists.
+        /// </summary>
+        /// <returns>A collection of the existing playists.</returns>
         public List<Playlist> GetPlaylists()
         {
             List<int> audioFileIDs = new List<int>() { 1, 2, 3 };

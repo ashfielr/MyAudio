@@ -48,7 +48,7 @@
         /// <summary>
         /// Function which deals with initialising the view model.
         /// </summary>
-        /// <returns>A <see cref="Task"/> representing the asynchronous operation of initialising the view model</placeholder></returns>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation of initialising the view model.</placeholder></returns>
         public async override Task Initialise()
         {
             var currentAudioFiles = await this.dataAccess.GetAudioFilesAsync();

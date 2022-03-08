@@ -10,9 +10,15 @@
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 
+    /// <summary>
+    /// View for playlists page.
+    /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PlaylistsPage : ContentPage
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlaylistsPage"/> class.
+        /// </summary>
         public PlaylistsPage()
         {
             InitializeComponent();

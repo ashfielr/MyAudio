@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Diagnostics;
     using System.IO;
     using System.Text;
     using System.Threading.Tasks;
@@ -167,7 +168,7 @@
             }
             catch (Exception ex)
             {
-                // The user canceled or something went wrong
+                Debug.Fail(ex.Message); // The user canceled or something went wrong
             }
 
             return null;
