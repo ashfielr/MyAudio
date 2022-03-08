@@ -22,3 +22,4 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1601:Partial elements should be documented", Justification = "Not needed.", Scope = "type", Target = "~T:MyAudio.AppShell")]
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:Elements should be documented", Justification = "Not needed.", Scope = "member", Target = "~M:MyAudio.Views.AddPlaylistPage.#ctor")]
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1601:Partial elements should be documented", Justification = "Not needed.", Scope = "type", Target = "~T:MyAudio.Views.AddPlaylistPage")]
+[assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:Elements should be documented", Justification = "Not needed.", Scope = "member", Target = "~M:MyAudio.ViewModels.AddPlaylistPageViewModel.PlaylistAudioFile.#ctor(MyAudio.Models.AudioFile,System.Boolean)")]

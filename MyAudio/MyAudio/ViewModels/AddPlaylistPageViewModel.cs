@@ -70,11 +70,45 @@
             }
         }
 
-        //private Task CreatePlaylist()
-        //{
-        //    Playlist playlist = new Playlist();
-        //}
+        private void CreatePlaylist()
+        {
+            Playlist playlist = new Playlist();
+            playlist.Title = this.PlaylistName;
+            playlist.AudioFileIDs = GetSelectedAudioFileIDs();
+            playlist.TotalDuration = GetPlaylistDuration();
+        }
 
+        private int GetPlaylistDuration()
+        {
+            int totalDuration = 0;
+            foreach (PlaylistAudioFile paf in PlaylistAudioFiles)
+            {
+                if (paf.IsSelected)
+                {
+                    totalDuration += paf.AudioFile.Duration;
+                }
+            }
+
+            return totalDuration;
+        }
+
+        private List<int> GetSelectedAudioFileIDs()
+        {
+            List<int> selectedAudioFiles = new List<int>();
+            foreach (PlaylistAudioFile paf in PlaylistAudioFiles)
+            {
+                if (paf.IsSelected)
+                {
+                    selectedAudioFiles.Add(paf.AudioFile.ID);
+                }
+            }
+
+            return selectedAudioFiles;
+        }
+
+        /// <summary>
+        /// Struct to encapsulate an <see cref="AudioFile"/> instance with a boolean value indicatin whether to add it to the playlist.
+        /// </summary>
         public struct PlaylistAudioFile
         {
             public PlaylistAudioFile(AudioFile _audioFile, bool _isSelected)
