@@ -11,7 +11,7 @@
             <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Playlists" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-                    <Button Text="Add Playlist" HorizontalOptions="EndAndExpand" Command="{Binding AddPlaylistCommand}"/>
+                    <Button x:Name="AddPlaylistButton" Text="Add Playlist" HorizontalOptions="EndAndExpand" Command="{Binding GoToAddPlaylistPageCommand}" />
                 </StackLayout>
             </Frame>
             <CollectionView  ItemsSource="{Binding Playlists, Mode=OneWay}"

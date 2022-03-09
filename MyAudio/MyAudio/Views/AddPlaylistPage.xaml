@@ -4,9 +4,40 @@
              x:Class="MyAudio.Views.AddPlaylistPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Add Playlist" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+                    <Button Text="Create" HorizontalOptions="EndAndExpand" Command="{Binding CreatePlaylistCommand}"/>
+                </StackLayout>
+            </Frame>
+            <StackLayout Padding="5,5,5,5">
+                <Label Text="Playlist Name" FontAttributes="Bold" Margin="5,0,0,0"/>
+                <Entry Text="{Binding PlaylistName}" />
+
+                <Label Text="Select audio files to add:" FontAttributes="Bold" Margin="5,0,0,0"/>
+                <CollectionView  ItemsSource="{Binding PlaylistAudioFiles, Mode=OneWay}"
+                         SelectionMode="Single"
+                         SelectedItem="{Binding SelectedAudioFile, Mode=TwoWay}"
+                         SelectionChangedCommand="{Binding AudioFileSelectedCommand}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="5,5,5,5" MinimumHeightRequest="50" BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition Width="4*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="{Binding AudioFile.Image, Mode=OneWay}" BackgroundColor="Gray" WidthRequest="50" HeightRequest="50" Aspect="AspectFill"/>
+                            <StackLayout Grid.Column="1" VerticalOptions="CenterAndExpand" Margin="5,0,0,0">
+                                    <Label Text="{Binding AudioFile.Title, Mode=OneWay}" FontAttributes="Bold"/>
+                                    <Label Text="{Binding AudioFile.Artist, Mode=OneWay}" />
+                            </StackLayout>
+                            <CheckBox Grid.Column="2" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

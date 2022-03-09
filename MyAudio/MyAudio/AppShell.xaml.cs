@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using MyAudio.Views;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 
@@ -14,6 +15,7 @@
         public AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute("Playlists/AddPlaylist", typeof(AddPlaylistPage));
         }
     }
 }
