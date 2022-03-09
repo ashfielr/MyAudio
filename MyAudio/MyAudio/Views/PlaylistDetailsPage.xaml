@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyAudio.Views.PlaylistDetailsPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{Binding PlaylistTitle}" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+                </StackLayout>
+            </Frame>
+            <CollectionView  ItemsSource="{Binding PlaylistAudioFiles, Mode=OneWay}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="5,5,5,5" MinimumHeightRequest="50" BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition Width="4*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="{Binding Image, Mode=OneWay}" BackgroundColor="Gray" WidthRequest="50" HeightRequest="50" Aspect="AspectFill"/>
+                            <StackLayout Grid.Column="1" VerticalOptions="CenterAndExpand" Margin="5,0,0,0">
+                                <Label Text="{Binding Title, Mode=OneWay}" FontAttributes="Bold"/>
+                                <Label Text="{Binding Artist, Mode=OneWay}" />
+                            </StackLayout>
+                            <Label Grid.Column="2" Text="{Binding Duration, Mode=OneWay, Converter={StaticResource MillisecondsToTimeFormatStr}}" VerticalOptions="CenterAndExpand"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
