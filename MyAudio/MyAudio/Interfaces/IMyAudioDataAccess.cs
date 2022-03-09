@@ -43,8 +43,32 @@
         /// <returns>An asynchronous task for returning the list of existing playlists.</returns>
         Task<List<Playlist>> GetPlaylists();
 
+        /// <summary>
+        /// Saves an AudioFilePlaylist to the table.
+        /// </summary>
+        /// <param name="afp">AudioFilePlaylist to be saved.</param>
+        /// <returns>The numer of rows edited/added as an asynchronous task.</placeholder></returns>
         Task<int> SaveAudioFilePlaylistAsync(IAudioFilePlaylist afp);
 
+        /// <summary>
+        /// Saves a Playlist to the table.
+        /// </summary>
+        /// <param name="playlist">Playlist to be saved.</param>
+        /// <returns>The numer of rows edited/added as an asynchronous task.</placeholder></returns>
         Task<int> SavePlaylistAsync(IPlaylist playlist);
+
+        /// <summary>
+        /// Gets the audio file IDs of of audio files in given playlist.
+        /// </summary>
+        /// <param name="playlistID">ID of the playlist.</param>
+        /// <returns>List of audio file IDs that are in the playlist.</returns>
+        Task<List<int>> GetAudioFileIDsInPlaylist(int playlistID);
+
+        /// <summary>
+        /// Gets all of the audio files which are in the playlist.
+        /// </summary>
+        /// <param name="playlist">The playlist to get the audio files for.</param>
+        /// <returns>List of the audio files in playlist.</returns>
+        Task<List<AudioFile>> GetPlaylistAudioFilesAsync(IPlaylist playlist);
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace MyAudio.Services
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using MyAudio.Interfaces;
     using MyAudio.Models;
@@ -81,11 +82,6 @@
         /// <returns>A collection of the existing playists.</returns>
         public Task<List<Playlist>> GetPlaylists()
         {
-            //List<int> audioFileIDs = new List<int>() { 1, 2, 3 };
-            //Playlist playlist = new Playlist("My Playlist", audioFileIDs, "PlayButton.png", 12345);
-            //List<Playlist> playlists = new List<Playlist>();
-            //playlists.Add(playlist);
-            //return playlists;
             return Database.Table<Playlist>().ToListAsync();
         }
 
@@ -111,6 +107,34 @@
             {
                 return Database.InsertAsync(playlist);
             }
+        }
+
+        /// <summary>
+        /// Gets the audio file IDs of of audio files in given playlist.
+        /// </summary>
+        /// <param name="playlistID">ID of the playlist.</param>
+        /// <returns>List of audio file IDs that are in the playlist.</returns>
+        public async Task<List<int>> GetAudioFileIDsInPlaylist(int playlistID)
+        {
+            List<AudioFilePlaylist> rows = await Database.Table<AudioFilePlaylist>()
+                                                    .Where(afp => afp.PlaylistID == playlistID)
+                                                    .ToListAsync();
+
+            return rows.Select(afp => afp.AudioFileID).ToList();
+        }
+
+        /// <summary>
+        /// Gets all of the audio files which are in the playlist.
+        /// </summary>
+        /// <param name="playlist">The playlist to get the audio files for.</param>
+        /// <returns>List of the audio files in playlist.</returns>
+        public async Task<List<AudioFile>> GetPlaylistAudioFilesAsync(IPlaylist playlist)
+        {
+            List<AudioFile> audioFiles = new List<AudioFile>();
+
+            List<int> audioFileIDs = await GetAudioFileIDsInPlaylist(playlist.ID);
+            audioFileIDs.ForEach(async audioFileID => audioFiles.Add(await GetAudioFileAsync(audioFileID)));
+            return audioFiles;
         }
     }
 }
