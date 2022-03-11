@@ -46,6 +46,7 @@
             services.AddTransient<AudioFilesPageViewModel>();
             services.AddTransient<PlaylistsPageViewModel>();
             services.AddTransient<AddPlaylistPageViewModel>();
+            services.AddTransient<PlaylistDetailsPageViewModel>();
             return services;
         }
     }

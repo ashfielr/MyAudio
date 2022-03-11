@@ -2,9 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using MyAudio.ViewModels;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 
@@ -20,6 +22,25 @@
         public PlaylistDetailsPage()
         {
             InitializeComponent();
+            this.BindingContext = IocProvider.ServiceProvider.GetService<PlaylistDetailsPageViewModel>();
+            this.SubscribeToEvents();
+        }
+
+        private void SubscribeToEvents()
+        {
+            this.Appearing += this.PlaylistDetailsPage_Appearing;
+        }
+
+        private async void PlaylistDetailsPage_Appearing(object sender, EventArgs e)
+        {
+            try
+            {
+                await (BindingContext as PlaylistDetailsPageViewModel).Initialise();
+            }
+            catch (Exception error)
+            {
+                Debug.Fail(error.Message); // handle gracefully here
+            }
         }
     }
 }

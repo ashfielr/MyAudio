@@ -9,7 +9,7 @@
                     <Label Text="{Binding PlaylistTitle}" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
                 </StackLayout>
             </Frame>
-            <CollectionView  ItemsSource="{Binding PlaylistAudioFiles, Mode=OneWay}">
+            <CollectionView  ItemsSource="{Binding PlaylistAudioFiles, Mode=TwoWay}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="5,5,5,5" MinimumHeightRequest="50" BackgroundColor="White">
