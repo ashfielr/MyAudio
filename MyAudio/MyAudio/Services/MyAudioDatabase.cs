@@ -143,7 +143,12 @@
             List<AudioFile> audioFiles = new List<AudioFile>();
 
             List<int> audioFileIDs = await GetAudioFileIDsInPlaylist(playlist.ID);
-            audioFileIDs.ForEach(async audioFileID => audioFiles.Add(await GetAudioFileAsync(audioFileID)));
+            foreach (int audioFileID in audioFileIDs)
+            {
+                AudioFile af = await GetAudioFileAsync(audioFileID);
+                audioFiles.Add(af);
+            }
+
             return audioFiles;
         }
     }
