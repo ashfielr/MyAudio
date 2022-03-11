@@ -26,6 +26,7 @@
         {
             this.dataAccess = _dataAccess;
             this.GoToAddPlaylistPageCommand = new Command(async () => await GoToAddPlaylistPage());
+            this.GoToPlaylistDetailsPageCommand = new Command(async () => await GoToPlaylistDetailsPage());
         }
 
         /// <summary>
@@ -42,9 +43,19 @@
         }
 
         /// <summary>
+        /// Gets or sets the selected playlist.
+        /// </summary>
+        public Playlist SelectedPlaylist { get; set; }
+
+        /// <summary>
         /// Gets or sets the command to go to the add playlist page.
         /// </summary>
         public ICommand GoToAddPlaylistPageCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command to go to the details page of the selected playlist.
+        /// </summary>
+        public ICommand GoToPlaylistDetailsPageCommand { get; set; }
 
         /// <summary>
         /// Initialises the view model for use with page.
@@ -64,6 +75,11 @@
         private async Task GoToAddPlaylistPage()
         {
             await Shell.Current.GoToAsync("Playlists/AddPlaylist");
+        }
+
+        private async Task GoToPlaylistDetailsPage()
+        {
+            await Shell.Current.GoToAsync($"Playlists/PlaylistDetails?playlistID={SelectedPlaylist.ID}");
         }
     }
 }

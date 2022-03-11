@@ -16,6 +16,7 @@
         {
             InitializeComponent();
             Routing.RegisterRoute("Playlists/AddPlaylist", typeof(AddPlaylistPage));
+            Routing.RegisterRoute("Playlists/PlaylistDetails", typeof(PlaylistDetailsPage));
         }
     }
 }
