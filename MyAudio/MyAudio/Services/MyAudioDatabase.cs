@@ -85,6 +85,16 @@
             return Database.Table<Playlist>().ToListAsync();
         }
 
+        /// <summary>
+        /// Gets a specific playlist.
+        /// </summary>
+        /// <param name="id">The ID of the playlist to get.</param>
+        /// <returns>The playlist.</returns>
+        public Task<Playlist> GePlaylistAsync(int id)
+        {
+            return Database.Table<Playlist>().Where(i => i.ID == id).FirstOrDefaultAsync();
+        }
+
         public Task<int> SaveAudioFilePlaylistAsync(IAudioFilePlaylist afp)
         {
             if (afp.ID != 0)
