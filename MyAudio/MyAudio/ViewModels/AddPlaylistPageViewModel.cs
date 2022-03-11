@@ -76,19 +76,23 @@
             }
         }
 
-        private Task<int> CreatePlaylist()
+        private async Task<int> CreatePlaylist()
         {
             Playlist playlist = new Playlist();
             playlist.Title = this.PlaylistName;
             List<int> audioFileIDs = GetSelectedAudioFileIDs();
-            foreach (int audioFileID in audioFileIDs)
-            {
-               this.dataAccess.SaveAudioFilePlaylistAsync(new AudioFilePlaylist(audioFileID, playlist.ID));
-            }
 
             playlist.NumOfAudioFiles = audioFileIDs.Count;
             playlist.TotalDuration = GetPlaylistDuration();
-            return this.dataAccess.SavePlaylistAsync(playlist);
+            int numRows = await this.dataAccess.SavePlaylistAsync(playlist);  // Add playlist to database
+
+            // Add AudioFilePlaylist records
+            foreach (int audioFileID in audioFileIDs)
+            {
+                await this.dataAccess.SaveAudioFilePlaylistAsync(new AudioFilePlaylist(audioFileID, playlist.ID));
+            }
+
+            return numRows;
         }
 
         private int GetPlaylistDuration()
