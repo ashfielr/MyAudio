@@ -10,10 +10,18 @@
     /// </summary>
     internal class AudioFilePlaylist : IAudioFilePlaylist
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AudioFilePlaylist"/> class.
+        /// </summary>
         public AudioFilePlaylist()
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AudioFilePlaylist"/> class.
+        /// </summary>
+        /// <param name="audioFileID">ID of the audio file.</param>
+        /// <param name="playlistID">ID of the playlist.</param>
         public AudioFilePlaylist(int audioFileID, int playlistID)
         {
             AudioFileID = audioFileID;
