@@ -90,7 +90,7 @@
         /// </summary>
         /// <param name="id">The ID of the playlist to get.</param>
         /// <returns>The playlist.</returns>
-        public Task<Playlist> GePlaylistAsync(int id)
+        public Task<Playlist> GetPlaylistAsync(int id)
         {
             return Database.Table<Playlist>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }

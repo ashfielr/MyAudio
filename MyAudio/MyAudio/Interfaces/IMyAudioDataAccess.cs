@@ -44,6 +44,13 @@
         Task<List<Playlist>> GetPlaylists();
 
         /// <summary>
+        /// Gets a specific playlist.
+        /// </summary>
+        /// <param name="id">The ID of the playlist to get.</param>
+        /// <returns>The playlist.</returns>
+        Task<Playlist> GetPlaylistAsync(int id);
+
+        /// <summary>
         /// Saves an AudioFilePlaylist to the table.
         /// </summary>
         /// <param name="afp">AudioFilePlaylist to be saved.</param>
