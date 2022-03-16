@@ -9,7 +9,7 @@
     /// <summary>
     /// Class for a playlist of audio files.
     /// </summary>
-    internal class Playlist : IPlaylist
+    public class Playlist : IPlaylist
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Playlist"/> class.

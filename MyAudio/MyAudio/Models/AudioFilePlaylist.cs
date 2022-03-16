@@ -8,7 +8,7 @@
     /// <summary>
     /// AudioFilePlaylist table to link audio files to their playlists.
     /// </summary>
-    internal class AudioFilePlaylist : IAudioFilePlaylist
+    public class AudioFilePlaylist : IAudioFilePlaylist
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AudioFilePlaylist"/> class.

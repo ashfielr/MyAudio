@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Diagnostics;
     using System.Text;
     using System.Threading.Tasks;
     using System.Web;
@@ -13,6 +14,7 @@
     /// <summary>
     /// View model for the PlaylistDetailsPage view.
     /// </summary>
+    [QueryProperty(nameof(PlaylistToShow), "PlaylistToShow")]
     internal class PlaylistDetailsPageViewModel : BaseViewModel, IQueryAttributable
     {
         private IMyAudioDataAccess dataAccess;
@@ -63,19 +65,20 @@
             }
         }
 
+        private int playlistID;
+
         /// <summary>
         /// Gets the parameters from the query.
         /// </summary>
         /// <param name="query">Dictionary of the parameters passed to page.</param>
         public void ApplyQueryAttributes(IDictionary<string, string> query)
         {
-            int playlistID = int.Parse(HttpUtility.UrlDecode(query["playlistID"]));
-            LoadPlaylist(playlistID);
+            playlistID = int.Parse(HttpUtility.UrlDecode(query["playlistID"]));
         }
 
         public override async Task Initialise()
         {
-            await Task.Delay(5);
+            await LoadPlaylist(playlistID);
             var currentAudioFilesInPlaylist = await this.dataAccess.GetPlaylistAudioFilesAsync(PlaylistToShow);
             this.PlaylistAudioFiles = new ObservableCollection<AudioFile>();
             if (currentAudioFilesInPlaylist.Count > 0)
@@ -84,19 +87,17 @@
             }
         }
 
-        private async void LoadPlaylist(int playlistID)
+        private async Task LoadPlaylist(int playlistID)
         {
             try
             {
+                List<Playlist> playlists = await this.dataAccess.GetPlaylists(); // Check the Playlists Table
                 PlaylistToShow = await this.dataAccess.GetPlaylistAsync(playlistID);
-                OnPropertyChanged(nameof(PlaylistToShow));
-
                 PlaylistTitle = PlaylistToShow.Title;
-                OnPropertyChanged(nameof(PlaylistTitle));
             }
             catch (Exception)
             {
-                Console.WriteLine("Failed to load playlist.");
+                Debug.Fail("Failed to load playlist.");
             }
         }
     }

@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Text;
 
-    internal interface IAudioFilePlaylist
+    public interface IAudioFilePlaylist
     {
         int ID { get; set; }
 

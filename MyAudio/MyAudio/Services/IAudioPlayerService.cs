@@ -8,7 +8,7 @@
     /// <summary>s
     /// A service which controls playback of audio files.
     /// </summary>
-    internal interface IAudioPlayerService
+    public interface IAudioPlayerService
     {
         /// <summary>
         /// Gets or sets a value indicating whether an audio file is playing.

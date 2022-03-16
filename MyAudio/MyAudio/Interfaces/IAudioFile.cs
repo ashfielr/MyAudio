@@ -3,7 +3,7 @@
     /// <summary>
     /// Interface for an audio file.
     /// </summary>
-    internal interface IAudioFile
+    public interface IAudioFile
     {
         /// <summary>
         /// Gets or sets ID used to identify audio file.

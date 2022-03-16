@@ -8,7 +8,7 @@
     /// <summary>
     /// Interface to provide data access for my audio app.
     /// </summary>
-    internal interface IMyAudioDataAccess
+    public interface IMyAudioDataAccess
     {
         /// <summary>
         /// Gets all existing audio files.

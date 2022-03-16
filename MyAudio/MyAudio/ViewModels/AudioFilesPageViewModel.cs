@@ -19,7 +19,7 @@
     /// <summary>
     /// The view model for an AudioFilesPage View />.
     /// </summary>
-    internal class AudioFilesPageViewModel : BaseViewModel
+    public class AudioFilesPageViewModel : BaseViewModel
     {
         private IMyAudioDataAccess dataAccess;
         private IFileService fileService;

@@ -7,7 +7,7 @@
     /// <summary>
     /// Interface for functionality of a playlist.
     /// </summary>
-    internal interface IPlaylist
+    public interface IPlaylist
     {
         /// <summary>
         /// Gets or sets ID of a playlist.
