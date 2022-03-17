@@ -91,7 +91,6 @@
         {
             try
             {
-                List<Playlist> playlists = await this.dataAccess.GetPlaylists(); // Check the Playlists Table
                 PlaylistToShow = await this.dataAccess.GetPlaylistAsync(playlistID);
                 PlaylistTitle = PlaylistToShow.Title;
             }
