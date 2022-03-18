@@ -109,6 +109,10 @@
 
         public Task<int> SavePlaylistAsync(IPlaylist playlist)
         {
+            if (playlist.Image is null)
+            {
+                playlist.Image = "PlaylistsIcon.png";
+            }
             if (playlist.ID != 0)
             {
                 return Database.UpdateAsync(playlist);
