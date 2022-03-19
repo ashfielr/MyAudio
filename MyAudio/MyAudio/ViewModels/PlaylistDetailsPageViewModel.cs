@@ -9,6 +9,7 @@
     using System.Web;
     using MyAudio.Interfaces;
     using MyAudio.Models;
+    using MyAudio.Services;
     using Xamarin.Forms;
 
     /// <summary>
@@ -18,7 +19,8 @@
     internal class PlaylistDetailsPageViewModel : BaseViewModel, IQueryAttributable
     {
         private IMyAudioDataAccess dataAccess;
-        private ObservableCollection<AudioFile> playlistAudioFiles;
+        private IAudioPlayerService audioPlayerService;
+        private ObservableCollection<AudioFile> audioFiles;
         private string playlistTitle;
         private Playlist playlistToShow;
 
@@ -27,10 +29,17 @@
         /// </summary>
         /// <param name="_dataAccess">App data access.</param>
         /// <param name="_playlist">The playlist to show details for.</param>
-        public PlaylistDetailsPageViewModel(IMyAudioDataAccess _dataAccess)
+        public PlaylistDetailsPageViewModel(IMyAudioDataAccess _dataAccess, IAudioPlayerService _audioPlayerService)
         {
-            this.dataAccess = _dataAccess;
+            dataAccess = _dataAccess;
+            audioPlayerService = _audioPlayerService;
+            AudioFilesListViewModel = new AudioFilesListViewModel();
+            CurrentPlayingAudioFileViewModel = new CurrentPlayingAudioFileViewModel(audioPlayerService);
         }
+
+        public AudioFilesListViewModel AudioFilesListViewModel { get; set; }
+
+        public CurrentPlayingAudioFileViewModel CurrentPlayingAudioFileViewModel { get; set;}
 
         /// <summary>
         /// Gets the playlist to show the details of.
@@ -55,16 +64,6 @@
             }
         }
 
-        public ObservableCollection<AudioFile> PlaylistAudioFiles
-        {
-            get => playlistAudioFiles;
-            set
-            {
-                playlistAudioFiles = value;
-                OnPropertyChanged(nameof(PlaylistAudioFiles));
-            }
-        }
-
         private int playlistID;
 
         /// <summary>
@@ -80,10 +79,10 @@
         {
             await LoadPlaylist(playlistID);
             var currentAudioFilesInPlaylist = await this.dataAccess.GetPlaylistAudioFilesAsync(PlaylistToShow);
-            this.PlaylistAudioFiles = new ObservableCollection<AudioFile>();
+            this.AudioFilesListViewModel.AudioFiles = new ObservableCollection<AudioFileViewModel>();
             if (currentAudioFilesInPlaylist.Count > 0)
             {
-                currentAudioFilesInPlaylist.ForEach(audioFile => this.PlaylistAudioFiles.Add(audioFile));
+                currentAudioFilesInPlaylist.ForEach(audioFile => this.AudioFilesListViewModel.AudioFiles.Add(new AudioFileViewModel(audioFile, audioPlayerService)));
             }
         }
 

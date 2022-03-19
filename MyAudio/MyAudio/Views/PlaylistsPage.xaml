@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyAudio.Views.PlaylistsPage"
-             xmlns:converters="clr-namespace:MyAudio.Converters">
+             xmlns:converters="clr-namespace:MyAudio.Converters"
+             xmlns:views="clr-namespace:MyAudio.Views">
     <ContentPage.Resources>
         <converters:AudioFileCountToInfoString x:Key="AudioFileCountToInfoString"/>
     </ContentPage.Resources>
@@ -36,6 +37,7 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            <views:CurrentPlayingAudioFileView BindingContext="{Binding CurrentPlayingAudioFileViewModel}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -15,15 +15,8 @@
     /// </summary>
     internal class AddPlaylistPageViewModel : BaseViewModel
     {
-        private ObservableCollection<PlaylistAudioFile> playlistAudioFile;
         private IMyAudioDataAccess dataAccess;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AddPlaylistPageViewModel"/> class.
-        /// </summary>
-        public AddPlaylistPageViewModel()
-        {
-        }
+        private ObservableCollection<PlaylistAudioFile> playlistAudioFile;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AddPlaylistPageViewModel"/> class.

@@ -8,6 +8,7 @@
     using System.Windows.Input;
     using MyAudio.Interfaces;
     using MyAudio.Models;
+    using MyAudio.Services;
     using Xamarin.Forms;
 
     /// <summary>
@@ -22,11 +23,12 @@
         /// Initializes a new instance of the <see cref="PlaylistsPageViewModel"/> class.
         /// </summary>
         /// <param name="_dataAccess">The data access for the application.</param>
-        public PlaylistsPageViewModel(IMyAudioDataAccess _dataAccess)
+        public PlaylistsPageViewModel(IMyAudioDataAccess _dataAccess, IAudioPlayerService audioPlayerService)
         {
             this.dataAccess = _dataAccess;
             this.GoToAddPlaylistPageCommand = new Command(async () => await GoToAddPlaylistPage());
             this.GoToPlaylistDetailsPageCommand = new Command(async () => await GoToPlaylistDetailsPage());
+            CurrentPlayingAudioFileViewModel = new CurrentPlayingAudioFileViewModel(audioPlayerService);
         }
 
         /// <summary>
@@ -41,6 +43,8 @@
                 OnPropertyChanged(nameof(Playlists));
             }
         }
+
+        public CurrentPlayingAudioFileViewModel CurrentPlayingAudioFileViewModel { get; set; }
 
         /// <summary>
         /// Gets or sets the selected playlist.

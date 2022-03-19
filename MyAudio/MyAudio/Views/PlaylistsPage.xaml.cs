@@ -35,7 +35,9 @@
         {
             try
             {
-                await (BindingContext as PlaylistsPageViewModel).Initialise();
+                PlaylistsPageViewModel playlistsPageViewModel = (PlaylistsPageViewModel)BindingContext;
+                await playlistsPageViewModel.Initialise();
+                playlistsPageViewModel.CurrentPlayingAudioFileViewModel.Initialise();
             }
             catch (Exception error)
             {
