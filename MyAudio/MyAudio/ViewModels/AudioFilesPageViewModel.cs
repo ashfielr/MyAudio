@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Diagnostics;
     using System.IO;
     using System.Text;
     using System.Threading.Tasks;
@@ -18,14 +19,12 @@
     /// <summary>
     /// The view model for an AudioFilesPage View />.
     /// </summary>
-    internal class AudioFilesPageViewModel : BaseViewModel
+    public class AudioFilesPageViewModel : BaseViewModel
     {
         private IMyAudioDataAccess dataAccess;
         private IFileService fileService;
         private IAudioPlayerService audioPlayerService;
-        private ObservableCollection<AudioFile> audioFiles;
-        private AudioFile selectedAudioFile;
-        private string currentAudioStateImg;
+        private IAudioFile selectedAudioFile;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AudioFilesPageViewModel"/> class.
@@ -38,70 +37,19 @@
             dataAccess = _dataAccess;
             fileService = _fileImageService;
             audioPlayerService = _audioPlayerService;
+            AudioFilesListViewModel = new AudioFilesListViewModel();
+            CurrentPlayingAudioFileViewModel = new CurrentPlayingAudioFileViewModel(audioPlayerService);
             UploadAudioFileCommand = new Command(async () => await UploadAudioFile());
-            PlayAudioFileCommand = new Command(async () => await PlayAudioFile());
-            ChangeAudioStateCommand = new Command(async () => await ChangeAudioState());
         }
 
-        /// <summary>
-        /// Gets or sets the collection of audio files which implement <see cref="IAudioFile"/>.
-        /// </summary>
-        public ObservableCollection<AudioFile> AudioFiles
-        {
-            get => audioFiles;
-            set
-            {
-                audioFiles = value;
-                OnPropertyChanged(nameof(AudioFiles));
-            }
-        }
+        public AudioFilesListViewModel AudioFilesListViewModel { get; set; }
 
-        /// <summary>
-        /// Gets or sets the current audio state image (play or pause image).
-        /// </summary>
-        public string CurrentAudioStateImg
-        {
-            get => currentAudioStateImg;
-            set
-            {
-                if (value != currentAudioStateImg)
-                {
-                    currentAudioStateImg = value;
-                    OnPropertyChanged(nameof(CurrentAudioStateImg));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the currently selected audio file.
-        /// </summary>
-        public AudioFile SelectedAudioFile
-        {
-            get => selectedAudioFile;
-            set
-            {
-                if (value != selectedAudioFile)
-                {
-                    selectedAudioFile = value;
-                    OnPropertyChanged(nameof(SelectedAudioFile));
-                }
-            }
-        }
+        public CurrentPlayingAudioFileViewModel CurrentPlayingAudioFileViewModel { get; set; }
 
         /// <summary>
         /// Gets or sets command to allow user to upload an audio file.
         /// </summary>
         public ICommand UploadAudioFileCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets command to play an audio file.
-        /// </summary>
-        public ICommand PlayAudioFileCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets command to change audio state (playing or paused).
-        /// </summary>
-        public ICommand ChangeAudioStateCommand { get; set; }
 
         /// <summary>
         /// Overrided initialise method for the <see cref="AudioFilesPageViewModel"/> view model.
@@ -110,21 +58,11 @@
         public override async Task Initialise()
         {
             var currentAudioFiles = await this.dataAccess.GetAudioFilesAsync();
-            this.AudioFiles = new ObservableCollection<AudioFile>();
+            this.AudioFilesListViewModel.AudioFiles = new ObservableCollection<AudioFileViewModel>();
             if (currentAudioFiles.Count > 0)
             {
-                currentAudioFiles.ForEach(audioFile => this.AudioFiles.Add(audioFile));
+                currentAudioFiles.ForEach(audioFile => this.AudioFilesListViewModel.AudioFiles.Add(new AudioFileViewModel(audioFile, audioPlayerService)));
             }
-        }
-
-        /// <summary>
-        /// Plays the selected audio file.
-        /// </summary>
-        /// <returns>A <see cref="Task"/> representing the asynchronous operation of playing an audio file.</placeholder></returns>
-        public async Task PlayAudioFile()
-        {
-            await audioPlayerService.Play(SelectedAudioFile.FilePath);
-            UpdateAudioStateImg();
         }
 
         /// <summary>
@@ -158,7 +96,7 @@
                             string imageFilePath = fileService.SaveImage(timestamp, image, location);
                             AudioFile audioFile = new AudioFile(tag.Title, tag.Artists.ToString(), tag.Album, (int)mp3.Audio.Duration.TotalMilliseconds, imageFilePath, audioFilePath);
                             await dataAccess.SaveAudioFileAsync(audioFile);
-                            this.AudioFiles.Add(audioFile);
+                            this.AudioFilesListViewModel.AudioFiles.Add(new AudioFileViewModel(audioFile, audioPlayerService));
                         }
                     }
                 }
@@ -167,33 +105,10 @@
             }
             catch (Exception ex)
             {
-                // The user canceled or something went wrong
+                Debug.Fail(ex.Message); // The user canceled or something went wrong
             }
 
             return null;
-        }
-
-        /// <summary>
-        /// Switches the audio state (playing or paused).
-        /// </summary>
-        /// <returns>A <see cref="Task"/> representing the asynchronous operation of changing the current audio playback state.</placeholder></returns>
-        private async Task ChangeAudioState()
-        {
-            await audioPlayerService.ChangeCurrentAudioState();
-            UpdateAudioStateImg();
-        }
-
-        private void UpdateAudioStateImg()
-        {
-            // Update image for button state
-            if (audioPlayerService.IsPlaying)
-            {
-                CurrentAudioStateImg = "PauseButton.png";
-            }
-            else
-            {
-                CurrentAudioStateImg = "PlayButton.png";
-            }
         }
     }
 }

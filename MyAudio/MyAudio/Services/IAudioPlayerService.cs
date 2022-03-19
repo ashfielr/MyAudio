@@ -4,23 +4,28 @@
     using System.Collections.Generic;
     using System.Text;
     using System.Threading.Tasks;
+    using MyAudio.Interfaces;
 
     /// <summary>s
     /// A service which controls playback of audio files.
     /// </summary>
-    internal interface IAudioPlayerService
+    public interface IAudioPlayerService
     {
         /// <summary>
         /// Gets or sets a value indicating whether an audio file is playing.
         /// </summary>
         bool IsPlaying { get; set; }
 
+        IAudioFile CurrentAudioFile { get; set; }
+
+        event EventHandler CurrentAudioFileChanged;
+
         /// <summary>
         /// Plays an audio file.
         /// </summary>
-        /// <param name="filePath">The path of the audio file to play.</param>
+        /// <param name="audioFile">The audio file to play.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation of playing an audio file.</placeholder></returns>
-        Task Play(string filePath);
+        Task Play(IAudioFile audioFile);
 
         /// <summary>
         /// Switches the audio state (playing or paused).

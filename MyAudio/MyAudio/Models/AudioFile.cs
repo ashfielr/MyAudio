@@ -6,7 +6,7 @@
     /// <summary>
     /// Model for audio file.
     /// </summary>
-    internal class AudioFile : IAudioFile
+    public class AudioFile : IAudioFile
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AudioFile"/> class.

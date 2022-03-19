@@ -4,12 +4,18 @@
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
     using System.Threading.Tasks;
+    using MyAudio.Interfaces;
+    using MyAudio.Services;
 
     /// <summary>
     /// Abstract class to provide base functionality for view models.
     /// </summary>
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
+        public BaseViewModel()
+        {
+        }
+
         /// <summary>
         /// Event to notify of property changes.
         /// </summary>

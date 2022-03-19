@@ -1,6 +1,7 @@
 ﻿namespace MyAudio.Services
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using MyAudio.Interfaces;
     using MyAudio.Models;
@@ -19,7 +20,9 @@
         public MyAudioDatabase()
         {
             Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
+            Database.CreateTableAsync<Playlist>().Wait();
             Database.CreateTableAsync<AudioFile>().Wait();
+            Database.CreateTableAsync<AudioFilePlaylist>().Wait();
         }
 
         /// <summary>
@@ -71,6 +74,86 @@
         public Task<int> DeleteAudioFileAsync(IAudioFile audioFile)
         {
             return Database.DeleteAsync(audioFile);
+        }
+
+        /// <summary>
+        /// Gets all the playlists.
+        /// </summary>
+        /// <returns>A collection of the existing playists.</returns>
+        public Task<List<Playlist>> GetPlaylists()
+        {
+            return Database.Table<Playlist>().ToListAsync();
+        }
+
+        /// <summary>
+        /// Gets a specific playlist.
+        /// </summary>
+        /// <param name="id">The ID of the playlist to get.</param>
+        /// <returns>The playlist.</returns>
+        public Task<Playlist> GetPlaylistAsync(int id)
+        {
+            return Database.Table<Playlist>().Where(i => i.ID == id).FirstOrDefaultAsync();
+        }
+
+        public Task<int> SaveAudioFilePlaylistAsync(IAudioFilePlaylist afp)
+        {
+            if (afp.ID != 0)
+            {
+                return Database.UpdateAsync(afp);
+            }
+            else
+            {
+                return Database.InsertAsync(afp);
+            }
+        }
+
+        public Task<int> SavePlaylistAsync(IPlaylist playlist)
+        {
+            if (playlist.Image is null)
+            {
+                playlist.Image = "PlaylistsIcon.png";
+            }
+            if (playlist.ID != 0)
+            {
+                return Database.UpdateAsync(playlist);
+            }
+            else
+            {
+                return Database.InsertAsync(playlist);
+            }
+        }
+
+        /// <summary>
+        /// Gets the audio file IDs of of audio files in given playlist.
+        /// </summary>
+        /// <param name="playlistID">ID of the playlist.</param>
+        /// <returns>List of audio file IDs that are in the playlist.</returns>
+        public async Task<List<int>> GetAudioFileIDsInPlaylist(int playlistID)
+        {
+            List<AudioFilePlaylist> rows = await Database.Table<AudioFilePlaylist>()
+                                                    .Where(afp => afp.PlaylistID == playlistID)
+                                                    .ToListAsync();
+
+            return rows.Select(afp => afp.AudioFileID).ToList();
+        }
+
+        /// <summary>
+        /// Gets all of the audio files which are in the playlist.
+        /// </summary>
+        /// <param name="playlist">The playlist to get the audio files for.</param>
+        /// <returns>List of the audio files in playlist.</returns>
+        public async Task<List<AudioFile>> GetPlaylistAudioFilesAsync(IPlaylist playlist)
+        {
+            List<AudioFile> audioFiles = new List<AudioFile>();
+
+            List<int> audioFileIDs = await GetAudioFileIDsInPlaylist(playlist.ID);
+            foreach (int audioFileID in audioFileIDs)
+            {
+                AudioFile af = await GetAudioFileAsync(audioFileID);
+                audioFiles.Add(af);
+            }
+
+            return audioFiles;
         }
     }
 }
