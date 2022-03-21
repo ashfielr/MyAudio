@@ -37,7 +37,7 @@
 
         private async Task GoToSingleAudioPage()
         {
-            await Shell.Current.GoToAsync("SingleAudioFilePage");
+            await Shell.Current.GoToAsync("CurrentPlayingAudioFilePage");
         }
 
         public IAudioFile AudioFile

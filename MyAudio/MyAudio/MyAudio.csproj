@@ -27,6 +27,9 @@
     <Compile Update="Views\AudioFilesPage.xaml.cs">
       <DependentUpon>AudioFilesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\CurrentPlayingAudioFilePage.xaml.cs">
+      <DependentUpon>CurrentPlayingAudioFilePage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -48,7 +51,7 @@
     <EmbeddedResource Update="Views\PlaylistsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\SingleAudioFilePage.xaml">
+    <EmbeddedResource Update="Views\CurrentPlayingAudioFilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
