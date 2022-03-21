@@ -19,6 +19,7 @@
         {
             audioPlayerService.CurrentAudioFileChanged += audioPlayerService_CurrentAudioFileChanged;
             ChangeAudioStateCommand = new Command(async () => await ChangeAudioState());
+            GoToSingleAudioPageCommand = new Command(async () => await GoToSingleAudioPage());
             UpdateAudioStateImg();
         }
 
@@ -31,6 +32,13 @@
         /// Gets or sets command to change audio state (playing or paused).
         /// </summary>
         public ICommand ChangeAudioStateCommand { get; set; }
+
+        public ICommand GoToSingleAudioPageCommand { get; set; }
+
+        private async Task GoToSingleAudioPage()
+        {
+            await Shell.Current.GoToAsync("SingleAudioFilePage");
+        }
 
         public IAudioFile AudioFile
         {
