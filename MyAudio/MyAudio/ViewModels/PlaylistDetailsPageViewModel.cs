@@ -29,12 +29,12 @@
         /// </summary>
         /// <param name="_dataAccess">App data access.</param>
         /// <param name="_playlist">The playlist to show details for.</param>
-        public PlaylistDetailsPageViewModel(IMyAudioDataAccess _dataAccess, IAudioPlayerService _audioPlayerService)
+        public PlaylistDetailsPageViewModel(IMyAudioDataAccess _dataAccess, IAudioPlayerService _audioPlayerService, ICurrentPlayingAudioFileViewModel cpafVM)
         {
             dataAccess = _dataAccess;
             audioPlayerService = _audioPlayerService;
             AudioFilesListViewModel = new AudioFilesListViewModel();
-            CurrentPlayingAudioFileViewModel = new CurrentPlayingAudioFileViewModel(audioPlayerService);
+            CurrentPlayingAudioFileViewModel = (CurrentPlayingAudioFileViewModel)cpafVM;
         }
 
         public AudioFilesListViewModel AudioFilesListViewModel { get; set; }

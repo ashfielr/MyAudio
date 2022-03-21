@@ -23,12 +23,12 @@
         /// Initializes a new instance of the <see cref="PlaylistsPageViewModel"/> class.
         /// </summary>
         /// <param name="_dataAccess">The data access for the application.</param>
-        public PlaylistsPageViewModel(IMyAudioDataAccess _dataAccess, IAudioPlayerService audioPlayerService)
+        public PlaylistsPageViewModel(IMyAudioDataAccess _dataAccess, IAudioPlayerService audioPlayerService, ICurrentPlayingAudioFileViewModel cpafVM)
         {
             this.dataAccess = _dataAccess;
             this.GoToAddPlaylistPageCommand = new Command(async () => await GoToAddPlaylistPage());
             this.GoToPlaylistDetailsPageCommand = new Command(async () => await GoToPlaylistDetailsPage());
-            CurrentPlayingAudioFileViewModel = new CurrentPlayingAudioFileViewModel(audioPlayerService);
+            CurrentPlayingAudioFileViewModel = (CurrentPlayingAudioFileViewModel)cpafVM;
         }
 
         /// <summary>

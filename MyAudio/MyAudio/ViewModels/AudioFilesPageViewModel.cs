@@ -32,13 +32,13 @@
         /// <param name="_dataAccess">The data access for the application.</param>
         /// <param name="_fileImageService">Service which allows an image to be saved.</param>
         /// <param name="_audioPlayerService">Service which allows playback of audio files.</param>
-        public AudioFilesPageViewModel(IMyAudioDataAccess _dataAccess, IFileService _fileImageService, IAudioPlayerService _audioPlayerService)
+        public AudioFilesPageViewModel(IMyAudioDataAccess _dataAccess, IFileService _fileImageService, IAudioPlayerService _audioPlayerService, ICurrentPlayingAudioFileViewModel cpafVM)
         {
             dataAccess = _dataAccess;
             fileService = _fileImageService;
             audioPlayerService = _audioPlayerService;
             AudioFilesListViewModel = new AudioFilesListViewModel();
-            CurrentPlayingAudioFileViewModel = new CurrentPlayingAudioFileViewModel(audioPlayerService);
+            CurrentPlayingAudioFileViewModel = (CurrentPlayingAudioFileViewModel)cpafVM;
             UploadAudioFileCommand = new Command(async () => await UploadAudioFile());
         }
 
