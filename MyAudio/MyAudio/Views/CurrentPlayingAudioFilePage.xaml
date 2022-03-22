@@ -21,9 +21,9 @@
                     <Label Text="{Binding AudioFile.Title, Mode=OneWay}" Grid.Row="1" Grid.ColumnSpan="3" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
                     <Label Text="{Binding AudioFile.Artist, Mode=OneWay}" Grid.Row="1" Grid.ColumnSpan="3" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
                 </StackLayout>
-                <Button Grid.Column="0" Grid.Row="4" Text="|&lt;&lt;" />
+                <Button Grid.Column="0" Grid.Row="4" Text="|&lt;&lt;" Command="{Binding PlayPreviousAudioFileCommand}"/>
                 <ImageButton Margin="0,0,10,0"  Grid.Column="1" Grid.Row="4" Command="{Binding ChangeAudioStateCommand}" Source="{Binding CurrentAudioStateImg}" WidthRequest="30" HeightRequest="30" BackgroundColor="Transparent"/>
-                <Button Grid.Column="2" Grid.Row="4" Text=">>|" />
+                <Button Grid.Column="2" Grid.Row="4" Text=">>|" Command="{Binding PlayNextAudioFileCommand}"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

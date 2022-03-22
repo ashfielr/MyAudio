@@ -20,6 +20,8 @@
             audioPlayerService.CurrentAudioFileChanged += audioPlayerService_CurrentAudioFileChanged;
             ChangeAudioStateCommand = new Command(async () => await ChangeAudioState());
             GoToSingleAudioPageCommand = new Command(async () => await GoToSingleAudioPage());
+            PlayNextAudioFileCommand = new Command(async () => await PlayNextAudioFile());
+            PlayPreviousAudioFileCommand = new Command(async () => await PlayPreviousAudioFile());
             UpdateAudioStateImg();
         }
 
@@ -34,6 +36,10 @@
         public ICommand ChangeAudioStateCommand { get; set; }
 
         public ICommand GoToSingleAudioPageCommand { get; set; }
+
+        public ICommand PlayNextAudioFileCommand { get; set; } 
+
+        public ICommand PlayPreviousAudioFileCommand { get; set; }
 
         private async Task GoToSingleAudioPage()
         {
@@ -93,6 +99,16 @@
             // Update audio file to currently playing audio file
             OnPropertyChanged(nameof(AudioFile));
             UpdateAudioStateImg();
+        }
+
+        private async Task PlayNextAudioFile()
+        {
+            await audioPlayerService.PlayNext();
+        }
+
+        private async Task PlayPreviousAudioFile()
+        {
+            await audioPlayerService.PlayPrevious();
         }
     }
 }

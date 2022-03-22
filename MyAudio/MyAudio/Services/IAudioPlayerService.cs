@@ -44,5 +44,9 @@
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation of changing the current audio playback state.</placeholder></returns>
         Task ChangeCurrentAudioState();
+
+        Task PlayNext();
+
+        Task PlayPrevious();
     }
 }
