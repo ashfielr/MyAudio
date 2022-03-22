@@ -18,6 +18,8 @@
         /// </summary>
         public bool IsPlaying { get; set; } = false;
 
+        public List<string> Queue { get; set; } = new List<string>();
+
         public IAudioFile CurrentAudioFile { get; set; }
 
         /// <summary>
@@ -45,6 +47,20 @@
         public async Task Play(IAudioFile audioFile)
         {
             await CrossMediaManager.Current.Play(audioFile.FilePath);
+            IsPlaying = true;
+            CurrentAudioFile = audioFile;
+            OnCurrentAudioFileChanged();
+        }
+
+        /// <summary>
+        /// Plays an audio file from a list of audio files.
+        /// </summary>
+        /// <param name="audioFile">The audio file to be played</param>
+        /// <param name="audioFileIdx">Index of the audio file in the queue to play.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation of playing an audio file from a list of audio files.</returns>
+        public async Task Play(IAudioFile audioFile, int audioFileIdx)
+        {
+            await CrossMediaManager.Current.Play(Queue[audioFileIdx]);
             IsPlaying = true;
             CurrentAudioFile = audioFile;
             OnCurrentAudioFileChanged();

@@ -5,6 +5,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using MyAudio.Interfaces;
+    using MyAudio.Models;
     using MyAudio.Services;
 
     public class AudioFileViewModel : BaseViewModel
@@ -17,6 +18,8 @@
             audioFile = _audioFile;
             audioPlayerService = _audioPlayerService;
         }
+
+        public IAudioFile AudioFile { get => audioFile; }
 
         public string Title { get => audioFile.Title; }
 
@@ -35,9 +38,9 @@
             throw new NotImplementedException();
         }
 
-        public async Task Play()
+        public async Task Play(int audioFileIdx)
         {
-            await audioPlayerService.Play(audioFile);
+            await audioPlayerService.Play(audioFile, audioFileIdx);
         }
     }
 }

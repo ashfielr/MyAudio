@@ -33,7 +33,7 @@
         {
             dataAccess = _dataAccess;
             audioPlayerService = _audioPlayerService;
-            AudioFilesListViewModel = new AudioFilesListViewModel();
+            AudioFilesListViewModel = new AudioFilesListViewModel(_audioPlayerService);
             CurrentPlayingAudioFileViewModel = (CurrentPlayingAudioFileViewModel)cpafVM;
         }
 

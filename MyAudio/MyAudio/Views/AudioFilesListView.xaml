@@ -5,7 +5,7 @@
   <ContentView.Content>
         <CollectionView  ItemsSource="{Binding AudioFiles, Mode=OneWay}"
                          SelectionMode="Single"
-                         SelectedItem="{Binding SelectedAudioFile, Mode=TwoWay}"
+                         SelectedItem="{Binding SelectedAudioFileVM, Mode=TwoWay}"
                          SelectionChangedCommand="{Binding PlayAudioFileCommand}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
