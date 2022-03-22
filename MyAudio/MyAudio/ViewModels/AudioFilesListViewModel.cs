@@ -70,6 +70,11 @@
             List<string> audioFilePaths = GetListOfAudioFilePaths(AudioFiles);
             audioPlayerService.Queue = audioFilePaths;
 
+            // Set the list of AudioFiles
+            List<IAudioFile> audioFilesList = new List<IAudioFile>();
+            AudioFiles.ToList().ForEach(audioFileVM => audioFilesList.Add(audioFileVM.AudioFile));
+            audioPlayerService.AudioFilesList = audioFilesList;
+
             // Play selected audio file
             int audioFileIdx = AudioFiles.IndexOf(SelectedAudioFileVM);
             await SelectedAudioFileVM.Play(audioFileIdx);

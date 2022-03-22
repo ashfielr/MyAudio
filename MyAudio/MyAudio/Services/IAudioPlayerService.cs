@@ -18,6 +18,8 @@
 
         List<string> Queue { get; set; }
 
+        List<IAudioFile> AudioFilesList { get; set; }
+
         IAudioFile CurrentAudioFile { get; set; }
 
         event EventHandler CurrentAudioFileChanged;
