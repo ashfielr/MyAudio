@@ -30,7 +30,7 @@
                 if (signOut)
                 {
                     //await Shell.Current.DisplayAlert("Success", "You're now signed up.", "Ok");
-                    Application.Current.MainPage = new LoginPage();
+                    await Shell.Current.GoToAsync("Login");
                 }
             }
             else

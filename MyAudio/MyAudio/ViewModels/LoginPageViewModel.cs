@@ -29,7 +29,7 @@ namespace MyAudio.ViewModels
             var userToken = await auth.LoginViaEmailPassword(Email, Password);
             if (userToken != string.Empty)
             {
-                Application.Current.MainPage = new AppShell();
+                Application.Current.MainPage = new MainShell();
             }
             else
             {
@@ -39,7 +39,7 @@ namespace MyAudio.ViewModels
 
         private async Task GoToSignUp()
         {
-            Application.Current.MainPage = new SignUpPage();
+            await Shell.Current.GoToAsync("SignUp");
         }
     }
 }

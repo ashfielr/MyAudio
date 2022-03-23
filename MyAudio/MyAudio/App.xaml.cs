@@ -18,7 +18,7 @@
         {
             this.InitializeComponent();
             IocProvider.Init();
-            this.MainPage = new LoginPage();
+            this.MainPage = new AppShell();
         }
 
         /// <summary>
