@@ -28,7 +28,7 @@ namespace MyAudio.iOS
                 var user = await Auth.DefaultInstance.SignInWithPasswordAsync(email, password);
                 return await user.User.GetIdTokenAsync();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return string.Empty;
             }
@@ -41,7 +41,7 @@ namespace MyAudio.iOS
                 _ = Auth.DefaultInstance.SignOut(out NSError error);
                 return error == null;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -54,7 +54,7 @@ namespace MyAudio.iOS
                 var newUser = await Auth.DefaultInstance.CreateUserAsync(email, password);
                 return await newUser.User.GetIdTokenAsync();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return string.Empty;
             }

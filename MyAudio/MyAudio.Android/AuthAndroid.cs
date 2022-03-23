@@ -43,7 +43,7 @@ namespace MyAudio.Droid
                 e.PrintStackTrace();
                 return string.Empty;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return string.Empty;
             }
@@ -56,7 +56,7 @@ namespace MyAudio.Droid
                 Firebase.Auth.FirebaseAuth.Instance.SignOut();
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -80,7 +80,7 @@ namespace MyAudio.Droid
                 e.PrintStackTrace();
                 return string.Empty;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return string.Empty;
             }

@@ -67,6 +67,16 @@
             }
         }
 
+        /// <summary>
+        /// Switches the audio state (playing or paused).
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation of changing the current audio playback state.</placeholder></returns>
+        public async Task ChangeAudioState()
+        {
+            await audioPlayerService.ChangeCurrentAudioState();
+            UpdateAudioStateImg();
+        }
+
         private void UpdateAudioStateImg()
         {
             // Update image for button state
@@ -82,16 +92,6 @@
             {
                 CurrentAudioStateImg = null;
             }
-        }
-
-        /// <summary>
-        /// Switches the audio state (playing or paused).
-        /// </summary>
-        /// <returns>A <see cref="Task"/> representing the asynchronous operation of changing the current audio playback state.</placeholder></returns>
-        public async Task ChangeAudioState()
-        {
-            await audioPlayerService.ChangeCurrentAudioState();
-            UpdateAudioStateImg();
         }
 
         private void audioPlayerService_CurrentAudioFileChanged(object sender, EventArgs e)

@@ -23,6 +23,7 @@
         private ObservableCollection<AudioFile> audioFiles;
         private string playlistTitle;
         private Playlist playlistToShow;
+        private int playlistID;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PlaylistDetailsPageViewModel"/> class.
@@ -63,8 +64,6 @@
                 OnPropertyChanged(nameof(PlaylistTitle));
             }
         }
-
-        private int playlistID;
 
         /// <summary>
         /// Gets the parameters from the query.
