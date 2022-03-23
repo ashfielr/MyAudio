@@ -24,18 +24,18 @@
         private async Task SignUp()
         {
             var user = await auth.SignupViaEmailPassword(Email, Password);
-            if (user != null)
+            if (user != string.Empty)
             {
                 var signOut = auth.SignOut();
                 if (signOut)
                 {
-                    //await Shell.Current.DisplayAlert("Success", "You're now signed up.", "Ok");
+                    await Shell.Current.DisplayAlert("Success", "You're now signed up.", "Ok");
                     await Shell.Current.GoToAsync("Login");
                 }
             }
             else
             {
-                //await Shell.Current.DisplayAlert("ERROR", "An error occurred during the sign up process, please try again.", "Ok");
+                await Shell.Current.DisplayAlert("ERROR", "An error occurred during the sign up process, please try again.", "Ok");
             }
         }
     }

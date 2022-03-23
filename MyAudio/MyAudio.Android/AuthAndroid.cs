@@ -80,6 +80,10 @@ namespace MyAudio.Droid
                 e.PrintStackTrace();
                 return string.Empty;
             }
+            catch (Exception e)
+            {
+                return string.Empty;
+            }
         }
     }
 }

@@ -33,7 +33,7 @@ namespace MyAudio.ViewModels
             }
             else
             {
-                //await Shell.Current.DisplayAlert("ERROR", "An error occurred during the sign up process, please try again.", "Ok");
+                await Shell.Current.DisplayAlert("ERROR", "Invalid email and password combination.", "Ok");
             }
         }
 
