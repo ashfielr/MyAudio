@@ -16,6 +16,10 @@
         /// </summary>
         bool IsPlaying { get; set; }
 
+        List<string> Queue { get; set; }
+
+        List<IAudioFile> AudioFilesList { get; set; }
+
         IAudioFile CurrentAudioFile { get; set; }
 
         event EventHandler CurrentAudioFileChanged;
@@ -28,9 +32,21 @@
         Task Play(IAudioFile audioFile);
 
         /// <summary>
+        /// Plays an audio file from a list of audio files.
+        /// </summary>
+        /// <param name="audioFile">The audio file to be played</param>
+        /// <param name="audioFileIdx">Index of the audio file in the queue to play.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation of playing an audio file from a list of audio files.</returns>
+        Task Play(IAudioFile audioFile, int audioFileIdx);
+
+        /// <summary>
         /// Switches the audio state (playing or paused).
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation of changing the current audio playback state.</placeholder></returns>
         Task ChangeCurrentAudioState();
+
+        Task PlayNext();
+
+        Task PlayPrevious();
     }
 }

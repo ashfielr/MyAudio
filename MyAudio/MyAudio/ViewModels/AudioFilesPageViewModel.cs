@@ -5,10 +5,12 @@
     using System.Collections.ObjectModel;
     using System.Diagnostics;
     using System.IO;
+    using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Input;
     using Id3;
+    using MediaManager;
     using Microsoft.Extensions.DependencyInjection;
     using MyAudio.Interfaces;
     using MyAudio.Models;
@@ -37,7 +39,7 @@
             dataAccess = _dataAccess;
             fileService = _fileImageService;
             audioPlayerService = _audioPlayerService;
-            AudioFilesListViewModel = new AudioFilesListViewModel();
+            AudioFilesListViewModel = new AudioFilesListViewModel(_audioPlayerService);
             CurrentPlayingAudioFileViewModel = (CurrentPlayingAudioFileViewModel)cpafVM;
             UploadAudioFileCommand = new Command(async () => await UploadAudioFile());
         }
