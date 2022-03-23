@@ -6,5 +6,9 @@
     <ShellContent   Title="Login"
                         Shell.NavBarIsVisible="false"
                         ContentTemplate="{DataTemplate views:LoginPage}" />
-        
+
+    <ShellContent   Title="SignUp"
+                        Shell.NavBarIsVisible="false"
+                        ContentTemplate="{DataTemplate views:SignUpPage}" />
+
 </Shell>
