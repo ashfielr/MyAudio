@@ -43,6 +43,8 @@
         /// <returns>The services container with VMs configured.</returns>
         public static IServiceCollection ConfigureViewModels(this IServiceCollection services)
         {
+            services.AddTransient<SignUpPageViewModel>();
+            services.AddTransient<LoginPageViewModel>();
             services.AddTransient<AudioFilesPageViewModel>();
             services.AddTransient<PlaylistsPageViewModel>();
             services.AddTransient<AddPlaylistPageViewModel>();

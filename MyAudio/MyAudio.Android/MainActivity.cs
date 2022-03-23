@@ -5,6 +5,7 @@
     using Android.OS;
     using Android.Runtime;
     using MediaManager;
+    using Firebase;
 
     [Activity(Label = "MyAudio", LaunchMode = LaunchMode.SingleTop, Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
@@ -13,6 +14,7 @@
         {
             base.OnCreate(savedInstanceState);
 
+            FirebaseApp.InitializeApp(Application.Context);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             CrossMediaManager.Current.Init(this);

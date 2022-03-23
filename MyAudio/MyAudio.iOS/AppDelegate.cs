@@ -24,6 +24,7 @@ namespace MyAudio.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            Firebase.Core.App.Configure();
             CrossMediaManager.Current.Init();
             LoadApplication(new App());
 

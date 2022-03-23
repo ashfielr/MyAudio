@@ -15,6 +15,8 @@
         public AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute("Login", typeof(LoginPage));
+            Routing.RegisterRoute("SignUp", typeof(SignUpPage));
             Routing.RegisterRoute("Playlists/AddPlaylist", typeof(AddPlaylistPage));
             Routing.RegisterRoute("Playlists/PlaylistDetails", typeof(PlaylistDetailsPage));
             Routing.RegisterRoute("CurrentPlayingAudioFilePage", typeof(CurrentPlayingAudioFilePage));
