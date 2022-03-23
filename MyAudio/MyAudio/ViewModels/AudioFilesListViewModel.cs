@@ -80,7 +80,6 @@
             await SelectedAudioFileVM.Play(audioFileIdx);
         }
 
-
         private List<string> GetListOfAudioFilePaths(ObservableCollection<AudioFileViewModel> afvms)
         {
             List<string> audioFilePaths = new List<string>();
