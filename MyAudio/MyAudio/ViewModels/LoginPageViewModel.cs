@@ -1,14 +1,14 @@
-﻿using MyAudio.Services;
-using MyAudio.Views;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Xamarin.Forms;
-
-namespace MyAudio.ViewModels
+﻿namespace MyAudio.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Input;
+    using MyAudio.Services;
+    using MyAudio.Views;
+    using Xamarin.Forms;
+
     public class LoginPageViewModel : EmailPasswordViewModel
     {
         private IAuth auth;

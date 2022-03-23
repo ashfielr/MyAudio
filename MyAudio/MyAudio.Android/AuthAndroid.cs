@@ -56,7 +56,7 @@ namespace MyAudio.Droid
                 Firebase.Auth.FirebaseAuth.Instance.SignOut();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 return false;
             }
