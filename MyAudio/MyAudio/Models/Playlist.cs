@@ -3,12 +3,14 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using Google.Cloud.Firestore;
     using MyAudio.Interfaces;
     using SQLite;
 
     /// <summary>
     /// Class for a playlist of audio files.
     /// </summary>
+    [FirestoreData]
     public class Playlist : IPlaylist
     {
         /// <summary>
@@ -36,28 +38,36 @@
         /// <summary>
         /// Gets or sets ID of a playlist.
         /// </summary>
-        [PrimaryKey]
-        [AutoIncrement]
-        public int ID { get; set; }
+        public string ID { get; set; }
 
         /// <summary>
         /// Gets or sets title of the playlist.
         /// </summary>
+        [FirestoreProperty]
         public string Title { get; set; }
 
         /// <summary>
         /// Gets or sets image for the playlist.
         /// </summary>
+        [FirestoreProperty]
         public string Image { get; set; }
 
         /// <summary>
         /// Gets or sets the number of audio files in playlist.
         /// </summary>
+        [FirestoreProperty]
         public int NumOfAudioFiles { get; set; }
 
         /// <summary>
         /// Gets or sets the total duration of all audio files in the playlist.
         /// </summary>
+        [FirestoreProperty]
         public int TotalDuration { get; set; }
+
+        /// <summary>
+        /// Gets or sets the collection of audio files IDs for the audio files in the playlist.
+        /// </summary>
+        [FirestoreProperty]
+        public List<string> AudioFileIDs { get; set; }
     }
 }

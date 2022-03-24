@@ -19,7 +19,7 @@
         /// <returns>The services container with app services configured.</returns>
         public static IServiceCollection ConfigureServices(this IServiceCollection services)
         {
-            services.AddSingleton<IMyAudioDataAccess, MyAudioDatabase>();
+            services.AddSingleton<IMyAudioDataAccess, FirestoreDbAccess>();
             services.AddSingleton<IFileService, FileService>();
             services.AddSingleton<IAudioPlayerService, AudioPlayerService>();
             return services;

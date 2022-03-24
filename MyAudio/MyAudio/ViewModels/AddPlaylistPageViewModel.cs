@@ -69,23 +69,17 @@
             }
         }
 
-        private async Task<int> CreatePlaylist()
+        private async Task CreatePlaylist()
         {
             Playlist playlist = new Playlist();
             playlist.Title = this.PlaylistName;
-            List<int> audioFileIDs = GetSelectedAudioFileIDs();
+
+            List<string> audioFileIDs = GetSelectedAudioFileIDs();
+            playlist.AudioFileIDs = audioFileIDs;
 
             playlist.NumOfAudioFiles = audioFileIDs.Count;
             playlist.TotalDuration = GetPlaylistDuration();
-            int numRows = await this.dataAccess.SavePlaylistAsync(playlist);  // Add playlist to database
-
-            // Add AudioFilePlaylist records
-            foreach (int audioFileID in audioFileIDs)
-            {
-                await this.dataAccess.SaveAudioFilePlaylistAsync(new AudioFilePlaylist(audioFileID, playlist.ID));
-            }
-
-            return numRows;
+            bool playlistCreated = await this.dataAccess.SavePlaylistAsync(playlist);  // Add playlist to database
         }
 
         private int GetPlaylistDuration()
@@ -102,9 +96,9 @@
             return totalDuration;
         }
 
-        private List<int> GetSelectedAudioFileIDs()
+        private List<string> GetSelectedAudioFileIDs()
         {
-            List<int> selectedAudioFiles = new List<int>();
+            List<string> selectedAudioFiles = new List<string>();
             foreach (PlaylistAudioFile paf in PlaylistAudioFiles)
             {
                 if (paf.IsSelected)

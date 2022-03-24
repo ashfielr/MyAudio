@@ -6,9 +6,9 @@
     public interface IAudioFile
     {
         /// <summary>
-        /// Gets or sets ID used to identify audio file.
+        /// Gets or sets ID of an audio file.
         /// </summary>
-        int ID { get; set; }
+        string ID { get; set; }
 
         /// <summary>
         /// Gets or sets title of the audio file.
@@ -16,22 +16,22 @@
         string Title { get; set; }
 
         /// <summary>
-        /// Gets or sets Artist of the audio file.
+        /// Gets or sets name of the artist.
         /// </summary>
         string Artist { get; set; }
 
         /// <summary>
-        /// Gets or sets Album name.
+        /// Gets or sets name of the album.
         /// </summary>
         string AlbumName { get; set; }
 
         /// <summary>
-        /// Gets or sets the duration.
+        /// Gets or sets duration of the audio file.
         /// </summary>
         int Duration { get; set; }
 
         /// <summary>
-        /// Gets or sets image path.
+        /// Gets or sets image for the audio file.
         /// </summary>
         string Image { get; set; }
 
