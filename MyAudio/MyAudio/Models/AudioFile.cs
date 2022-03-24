@@ -1,13 +1,12 @@
 ﻿namespace MyAudio.Models
 {
-    using Google.Cloud.Firestore;
     using MyAudio.Interfaces;
-    using SQLite;
+    using Plugin.CloudFirestore;
+    using Plugin.CloudFirestore.Attributes;
 
     /// <summary>
     /// Model for audio file.
     /// </summary>
-    [FirestoreData]
     public class AudioFile : IAudioFile
     {
         /// <summary>
@@ -39,42 +38,43 @@
         /// <summary>
         /// Gets or sets ID of an audio file.
         /// </summary>
+        [Id]
         public string ID { get; set; }
 
         /// <summary>
         /// Gets or sets title of the audio file.
         /// </summary>
-        [FirestoreProperty]
+        [MapTo("Title")]
         public string Title { get; set; }
 
         /// <summary>
         /// Gets or sets name of the artist.
         /// </summary>
-        [FirestoreProperty]
+        [MapTo("Artist")]
         public string Artist { get; set; }
 
         /// <summary>
         /// Gets or sets name of the album.
         /// </summary>
-        [FirestoreProperty]
+        [MapTo("AlbumName")]
         public string AlbumName { get; set; }
 
         /// <summary>
         /// Gets or sets duration of the audio file.
         /// </summary>
-        [FirestoreProperty]
+        [MapTo("Duration")]
         public int Duration { get; set; }
 
         /// <summary>
         /// Gets or sets image for the audio file.
         /// </summary>
-        [FirestoreProperty]
+        [MapTo("Image")]
         public string Image { get; set; }
 
         /// <summary>
         /// Gets or sets the file path for the mp3 file.
         /// </summary>
-        [FirestoreProperty]
+        [MapTo("FilePath")]
         public string FilePath { get; set; }
     }
 }

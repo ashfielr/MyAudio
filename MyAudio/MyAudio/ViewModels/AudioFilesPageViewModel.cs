@@ -61,7 +61,7 @@
         {
             var currentAudioFiles = await this.dataAccess.GetAudioFilesAsync();
             this.AudioFilesListViewModel.AudioFiles = new ObservableCollection<AudioFileViewModel>();
-            if (currentAudioFiles.Count > 0)
+            if (currentAudioFiles != null && currentAudioFiles.Count > 0)
             {
                 currentAudioFiles.ForEach(audioFile => this.AudioFilesListViewModel.AudioFiles.Add(new AudioFileViewModel(audioFile, audioPlayerService)));
             }
