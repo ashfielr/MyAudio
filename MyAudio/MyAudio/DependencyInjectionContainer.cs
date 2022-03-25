@@ -20,7 +20,7 @@
         public static IServiceCollection ConfigureServices(this IServiceCollection services)
         {
             services.AddSingleton<IMyAudioDataAccess, FirestoreDbAccess>();
-            services.AddSingleton<IFileService, FileService>();
+            services.AddSingleton<IFileService, FirebaseStorageService>();
             services.AddSingleton<IAudioPlayerService, AudioPlayerService>();
             return services;
         }
