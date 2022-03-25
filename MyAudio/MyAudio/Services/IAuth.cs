@@ -7,6 +7,8 @@
 
     public interface IAuth
     {
+        string GetCurrentLoggedInUserID();
+
         Task<string> LoginViaEmailPassword(string email, string password);
 
         Task<string> SignupViaEmailPassword(string email, string password);

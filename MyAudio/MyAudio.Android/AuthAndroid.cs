@@ -19,6 +19,11 @@ namespace MyAudio.Droid
 {
     public class AuthAndroid : IAuth
     {
+        public string GetCurrentLoggedInUserID()
+        {
+            return FirebaseAuth.Instance.CurrentUser.Uid;
+        }
+
         public bool IsSignedIn()
         {
             var user = FirebaseAuth.Instance.CurrentUser;

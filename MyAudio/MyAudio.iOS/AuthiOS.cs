@@ -15,6 +15,11 @@ namespace MyAudio.iOS
 {
     public class AuthiOS : IAuth
     {
+        public string GetCurrentLoggedInUserID()
+        {
+            return Auth.DefaultInstance.CurrentUser.Uid;
+        }
+
         public bool IsSignedIn()
         {
             var user = Auth.DefaultInstance.CurrentUser;

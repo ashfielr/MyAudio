@@ -70,7 +70,7 @@
             await Task.Delay(1);
             var currentPlaylists = await this.dataAccess.GetPlaylists();
             this.Playlists = new ObservableCollection<Playlist>();
-            if (currentPlaylists.Count > 0)
+            if (currentPlaylists != null && currentPlaylists.Count > 0)
             {
                 currentPlaylists.ForEach(playlist => this.Playlists.Add(playlist));
             }

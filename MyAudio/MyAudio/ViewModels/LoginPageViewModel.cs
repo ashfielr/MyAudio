@@ -6,16 +6,14 @@
     using System.Threading.Tasks;
     using System.Windows.Input;
     using MyAudio.Services;
+    using MyAudio.Utilities;
     using MyAudio.Views;
     using Xamarin.Forms;
 
     public class LoginPageViewModel : EmailPasswordViewModel
     {
-        private IAuth auth;
-
         public LoginPageViewModel()
         {
-            auth = DependencyService.Get<IAuth>();
             LogInCommand = new Command(async () => await LogIn());
             GoToSignUpPageCommand = new Command(async () => await GoToSignUp());
         }
@@ -26,9 +24,10 @@
 
         private async Task LogIn()
         {
-            var userToken = await auth.LoginViaEmailPassword(Email, Password);
+            var userToken = await AppData.Auth.LoginViaEmailPassword(Email, Password);
             if (userToken != string.Empty)
             {
+                AppData.UserID = userToken;
                 Application.Current.MainPage = new MainShell();
             }
             else
