@@ -34,7 +34,7 @@
 
         public async Task<List<AudioFile>> GetAudioFilesAsync()
         {
-            var collectionRef = db.Collection("userAudioFiles").Document().Collection("audioFiles");
+            var collectionRef = db.Collection("userAudioFiles").Document(AppData.Auth.GetCurrentLoggedInUserID()).Collection("audioFiles");
             var query = await collectionRef.GetAsync();
             List<AudioFile> audioFiles = query.ToObjects<AudioFile>().ToList<AudioFile>();
             if (audioFiles.Count > 0)
