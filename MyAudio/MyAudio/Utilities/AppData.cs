@@ -8,8 +8,6 @@
 
     public static class AppData
     {
-        public static string UserID { get; set; }
-
         public static IAuth Auth { get; set; } = DependencyService.Get<IAuth>();
     }
 }

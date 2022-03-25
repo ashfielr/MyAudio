@@ -27,7 +27,6 @@
             var userToken = await AppData.Auth.LoginViaEmailPassword(Email, Password);
             if (userToken != string.Empty)
             {
-                AppData.UserID = userToken;
                 Application.Current.MainPage = new MainShell();
             }
             else
