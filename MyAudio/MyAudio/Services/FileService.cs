@@ -8,7 +8,7 @@
     /// <summary>
     /// Service which provides functionality of saving an image.
     /// </summary>
-    internal class FileService : IFileService
+    public class FileService
     {
         private string localDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 

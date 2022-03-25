@@ -5,6 +5,8 @@
     using System.Text;
     using MyAudio.Interfaces;
     using SQLite;
+    using Plugin.CloudFirestore;
+    using Plugin.CloudFirestore.Attributes;
 
     /// <summary>
     /// Class for a playlist of audio files.
@@ -36,28 +38,37 @@
         /// <summary>
         /// Gets or sets ID of a playlist.
         /// </summary>
-        [PrimaryKey]
-        [AutoIncrement]
-        public int ID { get; set; }
+        [Id]
+        public string ID { get; set; }
 
         /// <summary>
         /// Gets or sets title of the playlist.
         /// </summary>
+        [MapTo("Title")]
         public string Title { get; set; }
 
         /// <summary>
         /// Gets or sets image for the playlist.
         /// </summary>
+        [MapTo("Image")]
         public string Image { get; set; }
 
         /// <summary>
         /// Gets or sets the number of audio files in playlist.
         /// </summary>
+        [MapTo("NumOfAudioFiles")]
         public int NumOfAudioFiles { get; set; }
 
         /// <summary>
         /// Gets or sets the total duration of all audio files in the playlist.
         /// </summary>
+        [MapTo("TotalDuration")]
         public int TotalDuration { get; set; }
+
+        /// <summary>
+        /// Gets or sets the collection of audio files IDs for the audio files in the playlist.
+        /// </summary>
+        [MapTo("AudioFileIDs")]
+        public List<string> AudioFileIDs { get; set; }
     }
 }

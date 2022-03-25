@@ -15,6 +15,10 @@
         /// </summary>
         public const string DatabaseFilename = "myAudioSQLite.db3";
 
+        public const string FirebaseProjectID = "myaudio-xamarin-app-dd5da";
+
+        public const string FirebaseStorageURL = "myaudio-xamarin-app-dd5da.appspot.com";
+
         /// <summary>
         /// The modes of opening access to database.
         /// </summary>

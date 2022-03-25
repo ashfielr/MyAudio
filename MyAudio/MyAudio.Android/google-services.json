@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "225207945815",
+    "project_id": "myaudio-xamarin-app-dd5da",
+    "storage_bucket": "myaudio-xamarin-app-dd5da.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:225207945815:android:1314c60b189f894e04b112",
+        "android_client_info": {
+          "package_name": "com.companyname.MyAudio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "225207945815-fncmrvs8tu5fs9sattbf16g2f6a6hqbm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCb-FrkwDxiWUuEYw6AUYn9gh2UBrj8RmY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "225207945815-fncmrvs8tu5fs9sattbf16g2f6a6hqbm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "225207945815-a08kchashitse7ln0qhuvcehjpctgi48.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.companyname.MyAudio"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

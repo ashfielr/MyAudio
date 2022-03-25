@@ -5,15 +5,18 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using MyAudio.Services;
+    using MyAudio.ViewModels;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AudioFilesListView : ContentView
+    public partial class SignUpPage : ContentPage
     {
-        public AudioFilesListView()
+        public SignUpPage()
         {
             InitializeComponent();
+            BindingContext = IocProvider.ServiceProvider.GetService<SignUpPageViewModel>();
         }
     }
 }

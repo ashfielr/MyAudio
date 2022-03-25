@@ -19,8 +19,8 @@
         /// <returns>The services container with app services configured.</returns>
         public static IServiceCollection ConfigureServices(this IServiceCollection services)
         {
-            services.AddSingleton<IMyAudioDataAccess, MyAudioDatabase>();
-            services.AddSingleton<IFileService, FileService>();
+            services.AddSingleton<IMyAudioDataAccess, FirestoreDbAccess>();
+            services.AddSingleton<IFileService, FirebaseStorageService>();
             services.AddSingleton<IAudioPlayerService, AudioPlayerService>();
             return services;
         }
@@ -43,6 +43,8 @@
         /// <returns>The services container with VMs configured.</returns>
         public static IServiceCollection ConfigureViewModels(this IServiceCollection services)
         {
+            services.AddTransient<SignUpPageViewModel>();
+            services.AddTransient<LoginPageViewModel>();
             services.AddTransient<AudioFilesPageViewModel>();
             services.AddTransient<PlaylistsPageViewModel>();
             services.AddTransient<AddPlaylistPageViewModel>();

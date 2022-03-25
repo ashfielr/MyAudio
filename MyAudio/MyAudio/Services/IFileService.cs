@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Text;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Interface allowing images to be saved.
@@ -17,7 +18,7 @@
         /// <param name="imageData">Image data in bytes.</param>
         /// <param name="location">Location to save the image.</param>
         /// <returns>The file path of the saved image.</returns>
-        string SaveImage(string name, byte[] imageData, string location = "temp");
+        Task<string> SaveImage(string name, byte[] imageData, string location = "temp");
 
         /// <summary>
         /// Copys an mp3 file to the audio files folder.
@@ -25,6 +26,6 @@
         /// <param name="filePath">The file path of original mp3 file.</param>
         /// <param name="copyName">Name of copy mp3 file.</param>
         /// <returns>The file path of the copy.</returns>
-        string CopyMp3(string filePath, string copyName);
+        Task<string> CopyMp3(string filePath, string copyName);
     }
 }

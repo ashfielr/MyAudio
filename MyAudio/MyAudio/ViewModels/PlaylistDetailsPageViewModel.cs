@@ -23,6 +23,7 @@
         private ObservableCollection<AudioFile> audioFiles;
         private string playlistTitle;
         private Playlist playlistToShow;
+        private string playlistID;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PlaylistDetailsPageViewModel"/> class.
@@ -64,29 +65,27 @@
             }
         }
 
-        private int playlistID;
-
         /// <summary>
         /// Gets the parameters from the query.
         /// </summary>
         /// <param name="query">Dictionary of the parameters passed to page.</param>
         public void ApplyQueryAttributes(IDictionary<string, string> query)
         {
-            playlistID = int.Parse(HttpUtility.UrlDecode(query["playlistID"]));
+            playlistID = HttpUtility.UrlDecode(query["playlistID"]);
         }
 
         public override async Task Initialise()
         {
             await LoadPlaylist(playlistID);
-            var currentAudioFilesInPlaylist = await this.dataAccess.GetPlaylistAudioFilesAsync(PlaylistToShow);
+            var currentAudioFilesInPlaylist = await this.dataAccess.GetAudioFilesInPlaylistAsync(PlaylistToShow);
             this.AudioFilesListViewModel.AudioFiles = new ObservableCollection<AudioFileViewModel>();
-            if (currentAudioFilesInPlaylist.Count > 0)
+            if (currentAudioFilesInPlaylist != null && currentAudioFilesInPlaylist.Count > 0)
             {
                 currentAudioFilesInPlaylist.ForEach(audioFile => this.AudioFilesListViewModel.AudioFiles.Add(new AudioFileViewModel(audioFile, audioPlayerService)));
             }
         }
 
-        private async Task LoadPlaylist(int playlistID)
+        private async Task LoadPlaylist(string playlistID)
         {
             try
             {
