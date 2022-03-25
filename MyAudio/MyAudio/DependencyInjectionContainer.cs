@@ -45,6 +45,7 @@
         {
             services.AddTransient<SignUpPageViewModel>();
             services.AddTransient<LoginPageViewModel>();
+            services.AddTransient<MainShellViewModel>();
             services.AddTransient<AudioFilesPageViewModel>();
             services.AddTransient<PlaylistsPageViewModel>();
             services.AddTransient<AddPlaylistPageViewModel>();

@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using MyAudio.ViewModels;
     using MyAudio.Views;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
@@ -15,6 +16,7 @@
         public MainShell()
         {
             InitializeComponent();
+            BindingContext = IocProvider.ServiceProvider.GetService<MainShellViewModel>();
             Routing.RegisterRoute("Playlists/AddPlaylist", typeof(AddPlaylistPage));
             Routing.RegisterRoute("Playlists/PlaylistDetails", typeof(PlaylistDetailsPage));
             Routing.RegisterRoute("CurrentPlayingAudioFilePage", typeof(CurrentPlayingAudioFilePage));

@@ -2,7 +2,22 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyAudio.MainShell"
-             xmlns:views="clr-namespace:MyAudio.Views">
+             xmlns:views="clr-namespace:MyAudio.Views"
+             FlyoutBehavior="Flyout">
+
+    <Shell.FlyoutHeader>
+        <Grid BackgroundColor="#2196F3" Padding="10,40,10,35">
+            <Label Text="MyAudio"
+               TextColor="White"
+               FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center" />
+        </Grid>
+    </Shell.FlyoutHeader>
+
+    <MenuItem Text="Logout"
+              IconImageSource=""
+              Command="{Binding LogoutCommand}" />
     <TabBar>
         <ShellContent   Title="AudioFiles"
                         Icon="AudioFilesIcon.png"   
