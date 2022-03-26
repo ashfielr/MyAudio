@@ -3,14 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyAudio.MainShell"
              xmlns:views="clr-namespace:MyAudio.Views">
-    <TabBar>
-        <ShellContent   Title="AudioFiles"
-                        Icon="AudioFilesIcon.png"   
+    <ShellContent   Title="Login"
                         Shell.NavBarIsVisible="false"
-                        ContentTemplate="{DataTemplate views:AudioFilesPage}" />
-        <ShellContent   Title="Playlists"
-                        Icon="PlaylistsIcon.png"
+                        ContentTemplate="{DataTemplate views:LoginPage}" />
+
+    <ShellContent   Title="SignUp"
                         Shell.NavBarIsVisible="false"
-                        ContentTemplate="{DataTemplate views:PlaylistsPage}" />
-    </TabBar>
+                        ContentTemplate="{DataTemplate views:SignUpPage}" />
+
 </Shell>

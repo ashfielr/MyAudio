@@ -15,9 +15,8 @@
         public MainShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute("Playlists/AddPlaylist", typeof(AddPlaylistPage));
-            Routing.RegisterRoute("Playlists/PlaylistDetails", typeof(PlaylistDetailsPage));
-            Routing.RegisterRoute("CurrentPlayingAudioFilePage", typeof(CurrentPlayingAudioFilePage));
+            Routing.RegisterRoute("Login", typeof(LoginPage));
+            Routing.RegisterRoute("SignUp", typeof(SignUpPage));
         }
     }
 }

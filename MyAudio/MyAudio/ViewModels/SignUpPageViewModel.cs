@@ -12,28 +12,75 @@
 
     public class SignUpPageViewModel : EmailPasswordViewModel
     {
+        private string email;
+        private string password;
+
         public SignUpPageViewModel()
         {
-            SignUpCommand = new Command(async () => await SignUp());
+            SignUpCommand = new Command(async () => await SignUp(), () => SignUpCanExecute());
         }
 
-        public ICommand SignUpCommand { get; set; }
+        public Command SignUpCommand { get; set; }
+
+        public override string Email
+        {
+            get => email;
+            set
+            {
+                if (value != null)
+                {
+                    email = value;
+                    SignUpCommand.ChangeCanExecute();
+                    OnPropertyChanged(nameof(Email));
+                }
+            }
+        }
+
+        public override string Password
+        {
+            get => password;
+            set
+            {
+                if (value != null)
+                {
+                    password = value;
+                    SignUpCommand.ChangeCanExecute();
+                    OnPropertyChanged(nameof(Password));
+                }
+            }
+        }
+
+        /// <summary>
+        /// A user can only sign up if they have entered an email and password.
+        /// </summary>
+        /// <returns>A bool indicating if email and password are not null or empty.</returns>
+        private bool SignUpCanExecute()
+        {
+            return !string.IsNullOrEmpty(Email) && !string.IsNullOrEmpty(Password);
+        }
 
         private async Task SignUp()
         {
-            var user = await AppData.Auth.SignupViaEmailPassword(Email, Password);
-            if (user != string.Empty)
+            try
             {
-                var signOut = AppData.Auth.SignOut();
-                if (signOut)
+                var user = await AppData.Auth.SignupViaEmailPassword(Email, Password);
+                if (user != string.Empty)
                 {
-                    await Shell.Current.DisplayAlert("Success", "You're now signed up.", "Ok");
-                    await Shell.Current.GoToAsync("Login");
+                    var signOut = AppData.Auth.SignOut();
+                    if (signOut)
+                    {
+                        await Shell.Current.DisplayAlert("Success", "You're now signed up.", "Ok");
+                        await Shell.Current.GoToAsync("Login");
+                    }
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert("ERROR", $"An error occurred during the sign up process.{Environment.NewLine}{Environment.NewLine}Please try again.", "Ok");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("ERROR", "An error occurred during the sign up process, please try again.", "Ok");
+                await Shell.Current.DisplayAlert("ERROR", $"{ex.Message}{Environment.NewLine}{Environment.NewLine}Please try again.", "Ok");
             }
         }
     }

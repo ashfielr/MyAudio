@@ -77,15 +77,13 @@ namespace MyAudio.Droid
             }
             catch (FirebaseAuthInvalidUserException e)
             {
-                e.PrintStackTrace();
-                return string.Empty;
+                throw new Exception(e.Message);
             }
             catch (FirebaseAuthInvalidCredentialsException e)
             {
-                e.PrintStackTrace();
-                return string.Empty;
+                throw new Exception(e.Message);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return string.Empty;
             }

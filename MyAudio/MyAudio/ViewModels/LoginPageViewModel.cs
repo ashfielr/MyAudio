@@ -25,9 +25,9 @@
         private async Task LogIn()
         {
             var userToken = await AppData.Auth.LoginViaEmailPassword(Email, Password);
-            if (userToken != string.Empty)
+            if (AppData.Auth.IsSignedIn())
             {
-                Application.Current.MainPage = new MainShell();
+                Application.Current.MainPage = new SecureMainShell();
             }
             else
             {
