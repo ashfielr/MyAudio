@@ -1,15 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MyAudio.Views.CurrentPlayingAudioFileView">
-  <ContentView.Content>
+             x:Class="MyAudio.Views.CurrentPlayingAudioFileView"
+             xmlns:converters="clr-namespace:MyAudio.Converters"
+             IsEnabled="{Binding AudioFile, Converter={StaticResource AudioFileToEnableBoolean}}">
+    <ContentView.Content>
         <Grid Padding="5,5,5,5" MinimumHeightRequest="50" BackgroundColor="White">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="60" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="45" />
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="0" Source="{Binding AudioFile.Image, Mode=OneWay}" BackgroundColor="Gray" WidthRequest="50" HeightRequest="50" Aspect="AspectFill"/>
+            <Image Grid.Column="0" Source="{Binding AudioFile.Image, Mode=OneWay}" BackgroundColor="LightGray" WidthRequest="50" HeightRequest="50" Aspect="AspectFill"/>
             <StackLayout Grid.Column="1" VerticalOptions="CenterAndExpand" Margin="5,0,0,0">
                 <Label Text="{Binding AudioFile.Title, Mode=OneWay}" FontAttributes="Bold"/>
                 <Label Text="{Binding AudioFile.Artist, Mode=OneWay}" />
