@@ -1,6 +1,7 @@
 ﻿namespace MyAudio
 {
     using System;
+    using MyAudio.Utilities;
     using MyAudio.Views;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
@@ -18,7 +19,14 @@
         {
             this.InitializeComponent();
             IocProvider.Init();
-            this.MainPage = new AppShell();
+            if (AppData.Auth.IsSignedIn())
+            {
+                this.MainPage = new SecureMainShell();
+            }
+            else
+            {
+                this.MainPage = new MainShell();
+            }
         }
 
         /// <summary>

@@ -20,7 +20,7 @@
         private async Task Logout()
         {
             AppData.Auth.SignOut();
-            Application.Current.MainPage = new AppShell();
+            Application.Current.MainPage = new MainShell();
         }
     }
 }
