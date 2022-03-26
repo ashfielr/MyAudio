@@ -117,5 +117,16 @@
             EventHandler handler = CurrentAudioFileChanged;
             handler?.Invoke(this, EventArgs.Empty);
         }
+
+        /// <summary>
+        /// Disposes of the audio player service.
+        /// </summary>
+        public async Task Dispose()
+        {
+            await CrossMediaManager.Current.Stop();
+            CurrentAudioFile = null;
+            CrossMediaManager.Current.Queue.Clear();
+            CrossMediaManager.Current.Dispose();
+        }
     }
 }

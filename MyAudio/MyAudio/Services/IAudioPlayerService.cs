@@ -48,5 +48,7 @@
         Task PlayNext();
 
         Task PlayPrevious();
+
+        Task Dispose();
     }
 }
