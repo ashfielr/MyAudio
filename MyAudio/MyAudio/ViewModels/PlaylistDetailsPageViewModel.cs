@@ -7,6 +7,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using System.Web;
+    using Microsoft.Extensions.DependencyInjection;
     using MyAudio.Interfaces;
     using MyAudio.Models;
     using MyAudio.Services;
@@ -30,12 +31,12 @@
         /// </summary>
         /// <param name="_dataAccess">App data access.</param>
         /// <param name="_playlist">The playlist to show details for.</param>
-        public PlaylistDetailsPageViewModel(IMyAudioDataAccess _dataAccess, IAudioPlayerService _audioPlayerService, ICurrentPlayingAudioFileViewModel cpafVM)
+        public PlaylistDetailsPageViewModel(IMyAudioDataAccess _dataAccess, IAudioPlayerService _audioPlayerService)
         {
             dataAccess = _dataAccess;
             audioPlayerService = _audioPlayerService;
             AudioFilesListViewModel = new AudioFilesListViewModel(_audioPlayerService);
-            CurrentPlayingAudioFileViewModel = (CurrentPlayingAudioFileViewModel)cpafVM;
+            CurrentPlayingAudioFileViewModel = IocProvider.ServiceProvider.GetService<CurrentPlayingAudioFileViewModel>();
         }
 
         public AudioFilesListViewModel AudioFilesListViewModel { get; set; }

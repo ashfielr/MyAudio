@@ -9,7 +9,7 @@
     using MyAudio.Services;
     using Xamarin.Forms;
 
-    public class CurrentPlayingAudioFileViewModel : AudioFileViewModel, ICurrentPlayingAudioFileViewModel
+    public class CurrentPlayingAudioFileViewModel : AudioFileViewModel
     {
 
         private string currentAudioStateImg;
