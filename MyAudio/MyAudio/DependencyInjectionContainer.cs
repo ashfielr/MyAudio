@@ -6,6 +6,7 @@
     using MyAudio.Models;
     using MyAudio.Services;
     using MyAudio.ViewModels;
+    using Xamarin.Essentials;
 
     /// <summary>
     /// Class for dependency injection container.
@@ -22,6 +23,7 @@
             services.AddSingleton<IMyAudioDataAccess, FirestoreDbAccess>();
             services.AddSingleton<IFileService, FirebaseStorageService>();
             services.AddSingleton<IAudioPlayerService, AudioPlayerService>();
+            services.AddSingleton<IFilePicker, FilePickerWrapper>();
             return services;
         }
 
@@ -51,7 +53,7 @@
             services.AddTransient<AddPlaylistPageViewModel>();
             services.AddTransient<PlaylistDetailsPageViewModel>();
             services.AddTransient<AudioFilesListViewModel>();
-            services.AddSingleton<ICurrentPlayingAudioFileViewModel, CurrentPlayingAudioFileViewModel>();
+            services.AddSingleton<CurrentPlayingAudioFileViewModel>(); // ICurrentPlayingAudioFileViewModel, 
             return services;
         }
     }

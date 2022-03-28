@@ -16,7 +16,7 @@
         public CurrentPlayingAudioFilePage()
         {
             InitializeComponent();
-            this.BindingContext = IocProvider.ServiceProvider.GetService<ICurrentPlayingAudioFileViewModel>();
+            this.BindingContext = IocProvider.ServiceProvider.GetService<CurrentPlayingAudioFileViewModel>();
             this.SubscribeToEvents();
         }
 

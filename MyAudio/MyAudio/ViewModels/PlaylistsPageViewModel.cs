@@ -6,6 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Input;
+    using Microsoft.Extensions.DependencyInjection;
     using MyAudio.Interfaces;
     using MyAudio.Models;
     using MyAudio.Services;
@@ -23,12 +24,12 @@
         /// Initializes a new instance of the <see cref="PlaylistsPageViewModel"/> class.
         /// </summary>
         /// <param name="_dataAccess">The data access for the application.</param>
-        public PlaylistsPageViewModel(IMyAudioDataAccess _dataAccess, IAudioPlayerService audioPlayerService, ICurrentPlayingAudioFileViewModel cpafVM)
+        public PlaylistsPageViewModel(IMyAudioDataAccess _dataAccess, IAudioPlayerService audioPlayerService)
         {
             this.dataAccess = _dataAccess;
             this.GoToAddPlaylistPageCommand = new Command(async () => await GoToAddPlaylistPage());
             this.GoToPlaylistDetailsPageCommand = new Command(async () => await GoToPlaylistDetailsPage());
-            CurrentPlayingAudioFileViewModel = (CurrentPlayingAudioFileViewModel)cpafVM;
+            CurrentPlayingAudioFileViewModel = IocProvider.ServiceProvider.GetService<CurrentPlayingAudioFileViewModel>();
         }
 
         /// <summary>

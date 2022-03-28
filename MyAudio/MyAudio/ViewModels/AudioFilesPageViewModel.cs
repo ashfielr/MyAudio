@@ -34,13 +34,13 @@
         /// <param name="_dataAccess">The data access for the application.</param>
         /// <param name="_fileImageService">Service which allows an image to be saved.</param>
         /// <param name="_audioPlayerService">Service which allows playback of audio files.</param>
-        public AudioFilesPageViewModel(IMyAudioDataAccess _dataAccess, IFileService _fileImageService, IAudioPlayerService _audioPlayerService, ICurrentPlayingAudioFileViewModel cpafVM)
+        public AudioFilesPageViewModel(IMyAudioDataAccess _dataAccess, IFileService _fileImageService, IAudioPlayerService _audioPlayerService)
         {
             dataAccess = _dataAccess;
             fileService = _fileImageService;
             audioPlayerService = _audioPlayerService;
             AudioFilesListViewModel = new AudioFilesListViewModel(_audioPlayerService);
-            CurrentPlayingAudioFileViewModel = (CurrentPlayingAudioFileViewModel)cpafVM;
+            CurrentPlayingAudioFileViewModel = IocProvider.ServiceProvider.GetService<CurrentPlayingAudioFileViewModel>();
             UploadAudioFileCommand = new Command(async () => await UploadAudioFile());
         }
 
@@ -81,7 +81,7 @@
             };
             try
             {
-                var result = await FilePicker.PickAsync(options);
+                var result = await IocProvider.ServiceProvider.GetService<IFilePicker>().PickAsync(options);
                 string timestamp = DateTime.Now.Ticks.ToString();
                 string audioFilePath = await fileService.CopyMp3(result.FullPath, timestamp);
                 if (result != null)

@@ -5,13 +5,17 @@
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Input;
+    using MyAudio.Services;
     using MyAudio.Utilities;
     using Xamarin.Forms;
 
     public class MainShellViewModel
     {
-        public MainShellViewModel()
+        private IAudioPlayerService audioPlayerService;
+
+        public MainShellViewModel(IAudioPlayerService _audioPlayerService)
         {
+            audioPlayerService = _audioPlayerService;
             LogoutCommand = new Command(async () => await Logout());
         }
 
@@ -19,6 +23,7 @@
 
         private async Task Logout()
         {
+            await audioPlayerService.Dispose();
             AppData.Auth.SignOut();
             Application.Current.MainPage = new MainShell();
         }
