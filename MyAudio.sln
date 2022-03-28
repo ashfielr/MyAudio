@@ -9,7 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyAudio.iOS", "MyAudio\MyAu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyAudio", "MyAudio\MyAudio\MyAudio.csproj", "{818F00AE-D3E8-4A0D-9E2E-037CE8DA7F25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyAudioTests", "MyAudioTests\MyAudioTests.csproj", "{9051CBC3-3577-4854-9944-3F5876E8F9C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyAudioTests", "MyAudioTests\MyAudioTests.csproj", "{9051CBC3-3577-4854-9944-3F5876E8F9C6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{818F00AE-D3E8-4A0D-9E2E-037CE8DA7F25} = {818F00AE-D3E8-4A0D-9E2E-037CE8DA7F25}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
