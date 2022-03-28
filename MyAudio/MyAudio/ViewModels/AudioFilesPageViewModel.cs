@@ -81,7 +81,7 @@
             };
             try
             {
-                var result = await FilePicker.PickAsync(options);
+                var result = await IocProvider.ServiceProvider.GetService<IFilePicker>().PickAsync(options);
                 string timestamp = DateTime.Now.Ticks.ToString();
                 string audioFilePath = await fileService.CopyMp3(result.FullPath, timestamp);
                 if (result != null)
