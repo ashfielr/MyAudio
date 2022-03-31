@@ -25,6 +25,25 @@
         <Color x:Key="LabelTextColorDark">#97A9B4</Color>
         <Color x:Key="LabelTextColorLight">#000000</Color>
 
+
+        <Style TargetType="Label" x:Key="TitleText">
+            <Setter Property="FontAttributes"
+                    Value="Bold" />
+            <Setter Property="FontSize" Value="Header" />
+            <Setter Property="TextColor" Value="White" />
+        </Style>
+        <Style TargetType="Label" x:Key="SubtitleText">
+            <Setter Property="FontAttributes"
+                    Value="Bold" />
+            <Setter Property="FontSize" Value="Header" />
+        </Style>
+
+        <Style TargetType="ContentPage">
+            <Setter Property="Padding" Value="5,5,5,5" />
+            <Setter Property="BackgroundColor"
+                    Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, 
+                            Light={StaticResource BackgroundColorLight}}" />
+        </Style>
         <Style TargetType="Frame">
             <Setter Property="BackgroundColor" 
                     Value="{AppThemeBinding Dark={StaticResource HeaderBackgroundColorDark}, 
@@ -68,7 +87,10 @@
             <Setter Property="BackgroundColor" 
                     Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, 
                             Light={StaticResource BackgroundColorLight}}" />
+            <Setter Property="HorizontalOptions"
+                    Value="Fill" />
         </Style>
+        
         <Style TargetType="ContentView">
             <Setter Property="BackgroundColor" 
                     Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, 
