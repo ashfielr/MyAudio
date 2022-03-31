@@ -17,6 +17,7 @@
         /// </summary>
         public App()
         {
+            Device.SetFlags(new string[] { "AppTheme_Experimental" });
             this.InitializeComponent();
             IocProvider.Init();
             if (AppData.Auth.IsSignedIn())

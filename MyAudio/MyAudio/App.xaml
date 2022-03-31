@@ -7,5 +7,83 @@
     <Application.Resources>
         <converters:MillisecondsToTimeFormatStr x:Key="MillisecondsToTimeFormatStr" />
         <converters:AudioFileToEnableBoolean x:Key="AudioFileToEnableBoolean" />
+        
+        <!-- App Styling -->
+        <Color x:Key="BackgroundColorDark">#2C2F33</Color>
+        <Color x:Key="BackgroundColorLight">#FFFFFF</Color>
+
+        <Color x:Key="HeaderBackgroundColorDark">#23272A</Color>
+        <Color x:Key="HeaderBackgroundColorLight">#2196F3</Color>
+
+        <Color x:Key="ButtonBackgroundColorDark">#2C2F33</Color>
+        <Color x:Key="ButtonBackgroundColorLight">#FFFFFF</Color>
+        <Color x:Key="ButtonDisabledBackgroundColorDark">#000000</Color>
+        <Color x:Key="ButtonDisabledBackgroundColorLight">#FFFFFF</Color>
+        <Color x:Key="ButtonTextColorDark">#FFFFFF</Color>
+        <Color x:Key="ButtonTextColorLight">#000000</Color>
+
+        <Color x:Key="LabelTextColorDark">#97A9B4</Color>
+        <Color x:Key="LabelTextColorLight">#000000</Color>
+
+        <Style TargetType="Frame">
+            <Setter Property="BackgroundColor" 
+                    Value="{AppThemeBinding Dark={StaticResource HeaderBackgroundColorDark}, 
+                            Light={StaticResource HeaderBackgroundColorLight}}" />
+        </Style>
+        <Style TargetType="TabBar">
+            <Setter Property="Shell.TabBarBackgroundColor"
+            Value="{AppThemeBinding Dark={StaticResource HeaderBackgroundColorDark}, 
+                            Light={StaticResource HeaderBackgroundColorLight}}" />
+            <Setter Property="Shell.TabBarTitleColor"
+            Value="{AppThemeBinding Dark={StaticResource LabelTextColorDark}, 
+                            Light={StaticResource BackgroundColorLight}}" />
+            <Setter Property="Shell.TabBarUnselectedColor"
+            Value="{AppThemeBinding Dark={StaticResource LabelTextColorDark}, 
+                            Light={StaticResource BackgroundColorLight}}" />
+        </Style>
+        <Style TargetType="Entry">
+            <Setter Property="TextColor"
+                    Value="{AppThemeBinding Dark={StaticResource LabelTextColorDark}, 
+                            Light={StaticResource LabelTextColorLight}}" />
+        </Style>
+        <Style x:Key="CommonButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" 
+                    Value="{AppThemeBinding Dark={StaticResource HeaderBackgroundColorDark}, 
+                            Light={StaticResource HeaderBackgroundColorLight}}"/>
+            <Setter Property="TextColor"
+                    Value="{AppThemeBinding Dark={StaticResource LabelTextColorDark}, 
+                            Light={StaticResource BackgroundColorLight}}" />
+            <Setter Property="BorderColor"
+                    Value="{AppThemeBinding Dark={StaticResource LabelTextColorDark}, 
+                            Light={StaticResource BackgroundColorLight}}" />
+            <Setter Property="BorderWidth" Value="2" />
+            <Setter Property="CornerRadius" Value="20" />
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" 
+                    Value="{AppThemeBinding Dark={StaticResource LabelTextColorDark}, 
+                            Light={StaticResource LabelTextColorLight}}" />
+        </Style>
+        <Style TargetType="StackLayout">
+            <Setter Property="BackgroundColor" 
+                    Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, 
+                            Light={StaticResource BackgroundColorLight}}" />
+        </Style>
+        <Style TargetType="ContentView">
+            <Setter Property="BackgroundColor" 
+                    Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, 
+                            Light={StaticResource BackgroundColorLight}}" />
+        </Style>
+        <Style TargetType="CollectionView">
+            <Setter Property="BackgroundColor" 
+                    Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, 
+                            Light={StaticResource BackgroundColorLight}}" />
+        </Style>
+        <Style TargetType="Grid">
+            <Setter Property="BackgroundColor" 
+                    Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, 
+                            Light={StaticResource BackgroundColorLight}}" />
+        </Style>
+
     </Application.Resources>
 </Application>

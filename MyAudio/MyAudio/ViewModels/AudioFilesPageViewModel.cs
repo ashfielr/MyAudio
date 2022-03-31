@@ -57,7 +57,7 @@
         /// Overrided initialise method for the <see cref="AudioFilesPageViewModel"/> view model.
         /// </summary>
         /// <returns>The initialisation task.</returns>
-        public override async Task Initialise()
+        public async Task Initialise()
         {
             var currentAudioFiles = await this.dataAccess.GetAudioFilesAsync();
             this.AudioFilesListViewModel.AudioFiles = new ObservableCollection<AudioFileViewModel>();

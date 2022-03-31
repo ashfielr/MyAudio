@@ -33,11 +33,6 @@
 
         public string FilePath { get => audioFile.FilePath; }
 
-        public override Task Initialise()
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task Play(int audioFileIdx)
         {
             await audioPlayerService.Play(audioFile, audioFileIdx);

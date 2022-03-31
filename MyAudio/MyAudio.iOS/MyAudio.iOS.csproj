@@ -78,6 +78,15 @@
     <ImageAsset Include="Assets.xcassets\AudioFilesIcon.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AudioFilesIconLight.imageset\AudioFilesIconLight.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AudioFilesIconLight.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\PlaylistsIconLight.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\PlaylistsIcon.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -94,6 +103,9 @@
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\PlaylistsIcon.imageset\PlaylistsIcon.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\PlaylistsIconLight.imageset\PlaylistsIconLight.png">
       <Visible>false</Visible>
     </ImageAsset>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />

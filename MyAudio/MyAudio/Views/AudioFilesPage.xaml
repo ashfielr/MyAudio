@@ -8,10 +8,11 @@
     </ContentPage.Resources>
     
     <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <StackLayout Orientation="Horizontal">
+        <Frame Padding="24" CornerRadius="0">
+            <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource HeaderBackgroundColorDark}, 
+                            Light={StaticResource HeaderBackgroundColorLight}}"  Orientation="Horizontal">
                 <Label Text="Audio Files" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-                <Button Text="Upload" HorizontalOptions="EndAndExpand" Command="{Binding UploadAudioFileCommand}"/>
+                <Button Text="Upload" Style="{StaticResource CommonButtonStyle}" HorizontalOptions="EndAndExpand" Command="{Binding UploadAudioFileCommand}"/>
             </StackLayout>
         </Frame>
         <views:AudioFilesListView BindingContext="{Binding AudioFilesListViewModel}" />

@@ -11,9 +11,9 @@
             <Entry Text="{Binding Email, Mode=TwoWay}" />
             <Label Text="Password" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
             <Entry Text="{Binding Password, Mode=TwoWay}" IsPassword="True" />
-            <Button Text="Login" Command="{Binding LogInCommand}" />
+            <Button Text="Login" Style="{StaticResource CommonButtonStyle}" Command="{Binding LogInCommand}" />
             <Label Text="Don't have an account? Sign up now..." />
-            <Button Text="Go to Sign Up Page" Command="{Binding GoToSignUpPageCommand}" />
+            <Button Text="Go to Sign Up Page" Style="{StaticResource CommonButtonStyle}" Command="{Binding GoToSignUpPageCommand}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

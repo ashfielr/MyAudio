@@ -66,7 +66,7 @@
         /// Initialises the view model for use with page.
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation of initialising the VM.</returns>
-        public override async Task Initialise()
+        public async Task Initialise()
         {
             await Task.Delay(1);
             var currentPlaylists = await this.dataAccess.GetPlaylists();
