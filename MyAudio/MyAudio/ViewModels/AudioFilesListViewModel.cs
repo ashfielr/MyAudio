@@ -55,11 +55,6 @@
         /// </summary>
         public ICommand PlayAudioFileCommand { get; set; }
 
-        public override Task Initialise()
-        {
-            throw new NotImplementedException();
-        }
-
         /// <summary>
         /// Plays the selected audio file.
         /// </summary>

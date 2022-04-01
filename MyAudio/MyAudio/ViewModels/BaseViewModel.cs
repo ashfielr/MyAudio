@@ -22,12 +22,6 @@
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
-        /// Initialises the view model.
-        /// </summary>
-        /// <returns>Returns task of initialisation.</returns>
-        public abstract Task Initialise();
-
-        /// <summary>
         /// Handles property change events.
         /// </summary>
         /// <param name="propertyName">The name of the property which has changed.</param>

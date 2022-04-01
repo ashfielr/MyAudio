@@ -2,7 +2,24 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyAudio.MainShell"
-             xmlns:views="clr-namespace:MyAudio.Views">
+             xmlns:views="clr-namespace:MyAudio.Views"
+             FlyoutBehavior="Flyout"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, 
+                            Light={StaticResource HeaderBackgroundColorLight}}" 
+             FlyoutBackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, 
+                            Light={StaticResource BackgroundColorLight}}" >
+
+    <Shell.FlyoutHeader>
+        <Grid BackgroundColor="{AppThemeBinding Dark={StaticResource HeaderBackgroundColorDark}, 
+                            Light={StaticResource HeaderBackgroundColorLight}}" Padding="10,40,10,35">
+            <Label Text="MyAudio"
+               TextColor="White"
+               FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center" />
+        </Grid>
+    </Shell.FlyoutHeader>
+
     <ShellContent   Title="Login"
                         Shell.NavBarIsVisible="false"
                         ContentTemplate="{DataTemplate views:LoginPage}" />

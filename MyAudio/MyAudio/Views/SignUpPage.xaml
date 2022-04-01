@@ -1,17 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MyAudio.Views.SignUpPage">
+             x:Class="MyAudio.Views.SignUpPage"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, 
+                            Light={StaticResource BackgroundColorLight}}">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to MyAudio!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Label Text="Email" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-            <Entry Text="{Binding Email, Mode=TwoWay}" />
-            <Label Text="Password" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-            <Entry Text="{Binding Password, Mode=TwoWay}" IsPassword="True" />
-            <Button Text="Sign Up" Command="{Binding SignUpCommand}"/>
+        <StackLayout Margin="5,5,5,5" VerticalOptions="Start" >
+            <Label Text="Sign up using your email and a password for your account."
+                VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                   />
+            <Label Text="Email" 
+                   Style="{StaticResource SubtitleText}"
+                   VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                    />
+            <Entry Text="{Binding Email, Mode=TwoWay}" 
+                   HorizontalOptions="CenterAndExpand"
+                   WidthRequest="350" />
+            <Label Text="Password"
+                   Style="{StaticResource SubtitleText}"
+                   VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+            <Entry Text="{Binding Password, Mode=TwoWay}" IsPassword="True"
+                   HorizontalOptions="CenterAndExpand"
+                   WidthRequest="350" />
+            <Button Text="Sign Up" Style="{StaticResource CommonButtonStyle}"  Command="{Binding SignUpCommand}" 
+                    HorizontalOptions="CenterAndExpand"
+                    WidthRequest="150" /> <!--Margin="25,0,25,0"-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

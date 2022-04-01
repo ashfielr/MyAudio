@@ -4,10 +4,11 @@
              x:Class="MyAudio.Views.AddPlaylistPage">
     <ContentPage.Content>
         <StackLayout>
-            <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-                <StackLayout Orientation="Horizontal">
+            <Frame Padding="24" CornerRadius="0">
+                <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource HeaderBackgroundColorDark}, 
+                            Light={StaticResource HeaderBackgroundColorLight}}" Orientation="Horizontal">
                     <Label Text="Add Playlist" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-                    <Button Text="Create" HorizontalOptions="EndAndExpand" Command="{Binding CreatePlaylistCommand}"/>
+                    <Button Text="Create" Style="{StaticResource CommonButtonStyle}" HorizontalOptions="EndAndExpand" Command="{Binding CreatePlaylistCommand}"/>
                 </StackLayout>
             </Frame>
             <StackLayout Padding="5,5,5,5">
@@ -21,7 +22,7 @@
                          SelectionChangedCommand="{Binding AudioFileSelectedCommand}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="5,5,5,5" MinimumHeightRequest="50" BackgroundColor="White">
+                        <Grid Padding="5,5,5,5" MinimumHeightRequest="50" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="60" />
                                 <ColumnDefinition Width="4*" />

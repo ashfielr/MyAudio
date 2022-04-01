@@ -5,8 +5,9 @@
              xmlns:views="clr-namespace:MyAudio.Views">
     <ContentPage.Content>
         <StackLayout>
-            <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-                <StackLayout Orientation="Horizontal">
+            <Frame Padding="24" CornerRadius="0">
+                <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource HeaderBackgroundColorDark}, 
+                            Light={StaticResource HeaderBackgroundColorLight}}" Orientation="Horizontal">
                     <Label Text="{Binding PlaylistTitle}" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
                 </StackLayout>
             </Frame>

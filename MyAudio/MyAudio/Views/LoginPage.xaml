@@ -3,17 +3,48 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyAudio.Views.LoginPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to MyAudio!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Label Text="Email" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-            <Entry Text="{Binding Email, Mode=TwoWay}" />
-            <Label Text="Password" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-            <Entry Text="{Binding Password, Mode=TwoWay}" IsPassword="True" />
-            <Button Text="Login" Command="{Binding LogInCommand}" />
-            <Label Text="Don't have an account? Sign up now..." />
-            <Button Text="Go to Sign Up Page" Command="{Binding GoToSignUpPageCommand}" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Frame  Padding="24" CornerRadius="0" VerticalOptions="Start" HeightRequest="50" >
+                    <StackLayout 
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource HeaderBackgroundColorDark}, 
+                                                    Light={StaticResource HeaderBackgroundColorLight}}"
+                                Orientation="Horizontal" >
+                        <Label Text="Welcome to MyAudio!"
+                           Style="{StaticResource TitleText}"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" />
+                    </StackLayout>
+                </Frame>
+            <StackLayout Grid.Row="1" VerticalOptions="Start" >
+                <Label Text="Email" 
+                   Style="{StaticResource SubtitleText}"
+                   VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                <Entry Text="{Binding Email, Mode=TwoWay}" />
+                <Label Text="Password" 
+                   Style="{StaticResource SubtitleText}"
+                   VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                <Entry Text="{Binding Password, Mode=TwoWay}" IsPassword="True" />
+                <Button Text="Login" Style="{StaticResource CommonButtonStyle}" 
+                    Command="{Binding LogInCommand}" 
+                    VerticalOptions="Start"
+                    HeightRequest="50" HorizontalOptions="CenterAndExpand" WidthRequest="200" />
+            </StackLayout>
+
+            
+            
+            <Label Grid.Row="3" Text="Don't have an account? Sign up now..."
+                   VerticalOptions="End" HorizontalOptions="Center"/>
+            <Button Grid.Row="4" Text="Go to Sign Up Page" Style="{StaticResource CommonButtonStyle}" 
+                    VerticalOptions="StartAndExpand" 
+                    HeightRequest="50" HorizontalOptions="CenterAndExpand" WidthRequest="200"
+                    Command="{Binding GoToSignUpPageCommand}" />
+        </Grid>
+        
     </ContentPage.Content>
 </ContentPage>

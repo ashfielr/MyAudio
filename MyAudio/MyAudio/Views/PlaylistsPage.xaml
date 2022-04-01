@@ -9,10 +9,11 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-                <StackLayout Orientation="Horizontal">
+            <Frame Padding="24" CornerRadius="0">
+                <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource HeaderBackgroundColorDark}, 
+                            Light={StaticResource HeaderBackgroundColorLight}}" Orientation="Horizontal">
                     <Label Text="Playlists" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-                    <Button x:Name="AddPlaylistButton" Text="Add Playlist" HorizontalOptions="EndAndExpand" Command="{Binding GoToAddPlaylistPageCommand}" />
+                    <Button x:Name="AddPlaylistButton" Style="{StaticResource CommonButtonStyle}" Text="Add Playlist" HorizontalOptions="EndAndExpand" Command="{Binding GoToAddPlaylistPageCommand}" />
                 </StackLayout>
             </Frame>
             <CollectionView  ItemsSource="{Binding Playlists, Mode=OneWay}"
@@ -21,13 +22,16 @@
                          SelectionChangedCommand="{Binding GoToPlaylistDetailsPageCommand}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="5,5,5,5" MinimumHeightRequest="50" BackgroundColor="White">
+                        <Grid Padding="5,5,5,5" MinimumHeightRequest="50" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="60" />
                                 <ColumnDefinition Width="4*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0" Source="{Binding Image, Mode=OneWay}" BackgroundColor="Gray" WidthRequest="50" HeightRequest="50" Aspect="AspectFill"/>
+                            <Image Grid.Column="0" Source="{Binding Image, Mode=OneWay}" 
+                                   BackgroundColor="{AppThemeBinding Dark={StaticResource HeaderBackgroundColorDark}, 
+                                                Light={StaticResource LabelTextColorDark}}" 
+                                   WidthRequest="50" HeightRequest="50" Aspect="AspectFill"/>
                             <StackLayout Grid.Column="1" VerticalOptions="CenterAndExpand" Margin="5,0,0,0">
                                 <Label Text="{Binding Title, Mode=OneWay}" FontAttributes="Bold"/>
                                 <Label Text="{Binding NumOfAudioFiles, Mode=OneWay, Converter={StaticResource AudioFileCountToInfoString}}"/>

@@ -75,7 +75,7 @@
             playlistID = HttpUtility.UrlDecode(query["playlistID"]);
         }
 
-        public override async Task Initialise()
+        public async Task Initialise()
         {
             await LoadPlaylist(playlistID);
             var currentAudioFilesInPlaylist = await this.dataAccess.GetAudioFilesInPlaylistAsync(PlaylistToShow);

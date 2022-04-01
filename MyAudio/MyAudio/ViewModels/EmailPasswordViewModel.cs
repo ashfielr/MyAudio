@@ -12,9 +12,5 @@
 
         public virtual string Password { get; set; }
 
-        public override Task Initialise()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
