@@ -73,7 +73,7 @@
         {
             Playlist playlist = new Playlist();
             playlist.Title = this.PlaylistName;
-
+            playlist.Image = "clef_music_notes.png";
             List<string> audioFileIDs = GetSelectedAudioFileIDs();
             playlist.AudioFileIDs = audioFileIDs;
 

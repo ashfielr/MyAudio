@@ -84,6 +84,18 @@
     <ImageAsset Include="Assets.xcassets\AudioFilesIconLight.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\clef_music_notes.png.imageset\clef_music_notes.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\clef_music_notes.png.imageset\clef_music_notes@2x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\clef_music_notes.png.imageset\clef_music_notes@3x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\clef_music_notes.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\PlaylistsIconLight.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
