@@ -15,7 +15,7 @@
     /// <summary>
     /// The view model for a PlaylistsPage View />.
     /// </summary>
-    internal class PlaylistsPageViewModel : BaseViewModel
+    public class PlaylistsPageViewModel : BaseViewModel
     {
         private IMyAudioDataAccess dataAccess;
         private ObservableCollection<Playlist> playlists;
@@ -68,7 +68,6 @@
         /// <returns>A <see cref="Task"/> representing the asynchronous operation of initialising the VM.</returns>
         public async Task Initialise()
         {
-            await Task.Delay(1);
             var currentPlaylists = await this.dataAccess.GetPlaylists();
             this.Playlists = new ObservableCollection<Playlist>();
             if (currentPlaylists != null && currentPlaylists.Count > 0)
