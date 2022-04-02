@@ -96,6 +96,12 @@
     <ImageAsset Include="Assets.xcassets\clef_music_notes.png.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\login_listening_image.jpg.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\login_listening_image.jpg.imageset\login_listening_image.jpg">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\PlaylistsIconLight.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
