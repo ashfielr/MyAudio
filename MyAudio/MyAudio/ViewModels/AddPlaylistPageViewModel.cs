@@ -13,7 +13,7 @@
     /// <summary>
     /// View model for the AddPlaylistPage.
     /// </summary>
-    internal class AddPlaylistPageViewModel : BaseViewModel
+    public class AddPlaylistPageViewModel : BaseViewModel
     {
         private IMyAudioDataAccess dataAccess;
         private ObservableCollection<PlaylistAudioFile> playlistAudioFile;
@@ -69,7 +69,14 @@
             }
         }
 
-        private async Task CreatePlaylist()
+        private async Task<bool> CreatePlaylist()
+        {
+            Playlist playlist = GeneratePlaylistFromView();
+            bool playlistCreated = await this.dataAccess.SavePlaylistAsync(playlist);  // Add playlist to database
+            return playlistCreated;
+        }
+
+        public Playlist GeneratePlaylistFromView()
         {
             Playlist playlist = new Playlist();
             playlist.Title = this.PlaylistName;
@@ -79,10 +86,10 @@
 
             playlist.NumOfAudioFiles = audioFileIDs.Count;
             playlist.TotalDuration = GetPlaylistDuration();
-            bool playlistCreated = await this.dataAccess.SavePlaylistAsync(playlist);  // Add playlist to database
+            return playlist;
         }
 
-        private int GetPlaylistDuration()
+        public int GetPlaylistDuration()
         {
             int totalDuration = 0;
             foreach (PlaylistAudioFile paf in PlaylistAudioFiles)
@@ -96,7 +103,7 @@
             return totalDuration;
         }
 
-        private List<string> GetSelectedAudioFileIDs()
+        public List<string> GetSelectedAudioFileIDs()
         {
             List<string> selectedAudioFiles = new List<string>();
             foreach (PlaylistAudioFile paf in PlaylistAudioFiles)
