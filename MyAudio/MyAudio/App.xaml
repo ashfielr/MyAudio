@@ -37,13 +37,6 @@
                     Value="Bold" />
             <Setter Property="FontSize" Value="Header" />
         </Style>
-
-        <Style TargetType="ContentPage">
-            <Setter Property="Padding" Value="5,5,5,5" />
-            <Setter Property="BackgroundColor"
-                    Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, 
-                            Light={StaticResource BackgroundColorLight}}" />
-        </Style>
         <Style TargetType="Frame">
             <Setter Property="BackgroundColor" 
                     Value="{AppThemeBinding Dark={StaticResource HeaderBackgroundColorDark}, 
@@ -103,6 +96,12 @@
         </Style>
         <Style TargetType="Grid">
             <Setter Property="BackgroundColor" 
+                    Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, 
+                            Light={StaticResource BackgroundColorLight}}" />
+        </Style>
+        <Style TargetType="ContentPage">
+            <Setter Property="Padding" Value="5,5,5,5" />
+            <Setter Property="BackgroundColor"
                     Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, 
                             Light={StaticResource BackgroundColorLight}}" />
         </Style>
