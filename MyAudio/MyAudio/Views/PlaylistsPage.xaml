@@ -19,6 +19,7 @@
             <CollectionView  ItemsSource="{Binding Playlists, Mode=OneWay}"
                          SelectionMode="Single"
                          SelectedItem="{Binding SelectedPlaylist, Mode=TwoWay}"
+                         BackgroundColor="Transparent"
                          SelectionChangedCommand="{Binding GoToPlaylistDetailsPageCommand}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
