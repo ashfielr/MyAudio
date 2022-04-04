@@ -158,7 +158,7 @@ namespace MyAudioTests.ViewModels
         }
 
         [Test]
-        public async Task GeneratePlaylistFromView_Should_Pass_With_Correct_Playlist_Fields_Set()
+        public async Task GeneratePlaylistFromView_Should_Pass_With_Correct_Playlist_Fields_Set_And_DefaultImg()
         {
             // arrange
             string expectedTitle = "PlaylistName";
@@ -193,7 +193,45 @@ namespace MyAudioTests.ViewModels
             Assert.AreEqual(playlist.AudioFileIDs, expectedAudioFileIDs);
             Assert.AreEqual(playlist.NumOfAudioFiles, 2);
             Assert.AreEqual(playlist.TotalDuration, expectedDuration);
+        }
 
+        [Test]
+        public async Task GeneratePlaylistFromView_Should_Pass_With_Correct_Playlist_Fields_Set_And_NonDefaultImg()
+        {
+            // arrange
+            string expectedTitle = "PlaylistName";
+            string expectedImage = "img.png";  // non default playlist image
+            int duration1 = 300;
+            int duration2 = 200;
+            int expectedDuration = duration1 + duration2;
+            List<string> expectedAudioFileIDs = new List<string> { "1", "2" };
+            var af1 = new AudioFile("Title1", "Artist1", "AlbumName1", duration1, "imageURI", "mp3URI");
+            af1.ID = expectedAudioFileIDs[0];
+            var af2 = new AudioFile("Title2", "Artist2", "AlbumName2", duration2, "imageURI", "mp3URI");
+            af2.ID = expectedAudioFileIDs[1];
+            using var mock = AutoMock.GetStrict();
+
+            var viewModelToTest = mock.Create<AddPlaylistPageViewModel>();
+            mock.Mock<IMyAudioDataAccess>().Setup(x => x.GetAudioFilesAsync()).ReturnsAsync(new List<AudioFile>
+            {
+                af1,
+                af2,
+            });
+
+            // act
+            await viewModelToTest.Initialise();
+            viewModelToTest.PlaylistAudioFiles[0].IsSelected = true;
+            viewModelToTest.PlaylistAudioFiles[1].IsSelected = true;
+            viewModelToTest.PlaylistName = expectedTitle;
+            viewModelToTest.PlaylistImgPath = expectedImage;
+            var playlist = viewModelToTest.GeneratePlaylistFromView();
+
+            // assert
+            Assert.AreEqual(playlist.Title, expectedTitle);
+            Assert.AreEqual(playlist.Image, expectedImage);
+            Assert.AreEqual(playlist.AudioFileIDs, expectedAudioFileIDs);
+            Assert.AreEqual(playlist.NumOfAudioFiles, 2);
+            Assert.AreEqual(playlist.TotalDuration, expectedDuration);
         }
     }
 }
