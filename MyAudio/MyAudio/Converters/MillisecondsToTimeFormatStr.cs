@@ -8,6 +8,7 @@
 
     /// <summary>
     /// Converter class that converts milliseconds to a time string format - MM:SS.
+    /// Will be used to show the duration of audio files and playlists.
     /// </summary>
     internal class MillisecondsToTimeFormatStr : IValueConverter
     {

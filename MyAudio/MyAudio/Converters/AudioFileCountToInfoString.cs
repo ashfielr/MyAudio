@@ -8,6 +8,7 @@
 
     /// <summary>
     /// Converts an integer number of audio file into an info string used when displaying playlists.
+    /// To be used with the number of audio files in a playlist.
     /// </summary>
     internal class AudioFileCountToInfoString : IValueConverter
     {
