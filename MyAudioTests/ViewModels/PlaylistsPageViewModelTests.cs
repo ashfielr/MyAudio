@@ -19,7 +19,7 @@ namespace MyAudioTests.ViewModels
         [SetUp]
         public void Setup()
         {
-            
+            IocProvider.Init();
         }
 
         [Test]
