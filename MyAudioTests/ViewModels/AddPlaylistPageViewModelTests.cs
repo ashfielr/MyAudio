@@ -37,7 +37,7 @@ namespace MyAudioTests.ViewModels
             Assert.IsTrue(viewModelToTest.PlaylistAudioFiles.Count == 2);
             foreach (var playlistAudioFile in viewModelToTest.PlaylistAudioFiles)
             {
-                Assert.IsFalse(playlistAudioFile.IsSelected); // all the checkboxes will be unticked
+                Assert.IsFalse(playlistAudioFile.IsSelected); // all the checkboxes are not checked
             }
         }
 
