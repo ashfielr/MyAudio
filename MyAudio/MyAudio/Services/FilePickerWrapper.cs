@@ -7,6 +7,9 @@ using Xamarin.Essentials;
 
 namespace MyAudio.Services
 {
+    /// <summary>
+    /// Class used to wrap the static class <see cref="FilePicker"/> inside a non-static class.
+    /// </summary>
     public class FilePickerWrapper : IFilePicker
     {
         public Task<FileResult> PickAsync(PickOptions options = null)

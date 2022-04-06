@@ -3,33 +3,40 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.IO;
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Input;
     using MyAudio.Interfaces;
     using MyAudio.Models;
+    using MyAudio.Services;
+    using Xamarin.Essentials;
     using Xamarin.Forms;
 
     /// <summary>
     /// View model for the AddPlaylistPage.
     /// </summary>
-    internal class AddPlaylistPageViewModel : BaseViewModel
+    public class AddPlaylistPageViewModel : BaseViewModel
     {
         private IMyAudioDataAccess dataAccess;
+        private IFileService fs;
         private ObservableCollection<PlaylistAudioFile> playlistAudioFile;
+        private string playlistImgPath;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AddPlaylistPageViewModel"/> class.
         /// </summary>
         /// <param name="_dataAccess">The data access for application.</param>
-        public AddPlaylistPageViewModel(IMyAudioDataAccess _dataAccess)
+        public AddPlaylistPageViewModel(IMyAudioDataAccess _dataAccess, IFileService _fs)
         {
             this.dataAccess = _dataAccess;
+            this.fs = _fs;
             this.CreatePlaylistCommand = new Command(async () =>
             {
                 await CreatePlaylist();
                 Shell.Current.SendBackButtonPressed();
             });
+            this.CaptureImageCommand = new Command(async () => await CaptureImage());
         }
 
         /// <summary>
@@ -51,9 +58,30 @@
         public string PlaylistName { get; set; }
 
         /// <summary>
+        /// Gets or sets the playlist image path to be.
+        /// </summary>
+        public string PlaylistImgPath
+        {
+            get => playlistImgPath;
+            set
+            {
+                if (playlistImgPath != value)
+                {
+                    playlistImgPath = value;
+                    OnPropertyChanged(nameof(PlaylistImgPath));
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the command to create a new playlist with the audio files selected.
         /// </summary>
         public ICommand CreatePlaylistCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command to take an image to be used as the playlist image.
+        /// </summary>
+        public ICommand CaptureImageCommand { get; set; }
 
         /// <summary>
         /// Function which deals with initialising the view model.
@@ -69,20 +97,47 @@
             }
         }
 
-        private async Task CreatePlaylist()
+        private async Task<bool> CreatePlaylist()
+        {
+            Playlist playlist = GeneratePlaylistFromView();
+            bool playlistCreated = await this.dataAccess.SavePlaylistAsync(playlist);  // Add playlist to database
+            return playlistCreated;
+        }
+
+        private async Task CaptureImage()
+        {
+            var pic = await MediaPicker.CapturePhotoAsync();
+            string imagePath = pic.FullPath;
+            string timestamp = DateTime.Now.Ticks.ToString();
+
+            // Extract byte data of image
+            FileInfo fileInfo = new FileInfo(imagePath);
+            Byte[] imgData = new byte[fileInfo.Length];
+            using (FileStream fs  = fileInfo.OpenRead())
+            {
+                fs.Read(imgData, 0, imgData.Length);
+            }
+            fileInfo.Delete();
+
+            // save image
+            string savedImgPath = await this.fs.SaveImage(timestamp, imgData);
+            this.PlaylistImgPath = savedImgPath;
+        }
+
+        public Playlist GeneratePlaylistFromView()
         {
             Playlist playlist = new Playlist();
             playlist.Title = this.PlaylistName;
-            playlist.Image = "clef_music_notes.png";
+            playlist.Image = PlaylistImgPath == null ? "clef_music_notes.png" : PlaylistImgPath;
             List<string> audioFileIDs = GetSelectedAudioFileIDs();
             playlist.AudioFileIDs = audioFileIDs;
 
             playlist.NumOfAudioFiles = audioFileIDs.Count;
             playlist.TotalDuration = GetPlaylistDuration();
-            bool playlistCreated = await this.dataAccess.SavePlaylistAsync(playlist);  // Add playlist to database
+            return playlist;
         }
 
-        private int GetPlaylistDuration()
+        public int GetPlaylistDuration()
         {
             int totalDuration = 0;
             foreach (PlaylistAudioFile paf in PlaylistAudioFiles)
@@ -96,7 +151,7 @@
             return totalDuration;
         }
 
-        private List<string> GetSelectedAudioFileIDs()
+        public List<string> GetSelectedAudioFileIDs()
         {
             List<string> selectedAudioFiles = new List<string>();
             foreach (PlaylistAudioFile paf in PlaylistAudioFiles)

@@ -1,6 +1,7 @@
 ﻿namespace MyAudio
 {
     using System;
+    using MyAudio.AppShells;
     using MyAudio.Utilities;
     using MyAudio.Views;
     using Xamarin.Forms;

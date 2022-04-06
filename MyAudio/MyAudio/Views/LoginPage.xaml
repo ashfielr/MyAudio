@@ -1,27 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MyAudio.Views.LoginPage">
+             x:Class="MyAudio.Views.LoginPage" >
     <ContentPage.Content>
-        <Grid>
+        <Grid  >
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*" />
-                <RowDefinition Height="3*" />
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="4*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Frame  Padding="24" CornerRadius="0" VerticalOptions="Start" HeightRequest="50" >
-                    <StackLayout 
+            <Frame  Padding="24" CornerRadius="0" 
+                    VerticalOptions="FillAndExpand" HeightRequest="50" >
+                <StackLayout 
                                 BackgroundColor="{AppThemeBinding Dark={StaticResource HeaderBackgroundColorDark}, 
                                                     Light={StaticResource HeaderBackgroundColorLight}}"
                                 Orientation="Horizontal" >
-                        <Label Text="Welcome to MyAudio!"
+                    <Label Text="MyAudio"
+                           FontSize="25"
                            Style="{StaticResource TitleText}"
                         VerticalOptions="CenterAndExpand" 
                         HorizontalOptions="CenterAndExpand" />
-                    </StackLayout>
-                </Frame>
-            <StackLayout Grid.Row="1" VerticalOptions="Start" >
+                </StackLayout>
+            </Frame>
+            <Image Source="login_listening_image.jpg" 
+               Grid.Row="1"
+               
+               VerticalOptions="FillAndExpand" 
+               Aspect="AspectFill"
+               Opacity="0.85" />
+            <StackLayout Grid.Row="2" Margin="35,5,35,5" 
+                         VerticalOptions="Center" 
+                         BackgroundColor="Transparent">
+                
                 <Label Text="Email" 
                    Style="{StaticResource SubtitleText}"
                    VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
@@ -36,11 +48,10 @@
                     HeightRequest="50" HorizontalOptions="CenterAndExpand" WidthRequest="200" />
             </StackLayout>
 
-            
-            
+
             <Label Grid.Row="3" Text="Don't have an account? Sign up now..."
                    VerticalOptions="End" HorizontalOptions="Center"/>
-            <Button Grid.Row="4" Text="Go to Sign Up Page" Style="{StaticResource CommonButtonStyle}" 
+            <Button Grid.Row="4" Text="Sign Up" Style="{StaticResource CommonButtonStyle}" 
                     VerticalOptions="StartAndExpand" 
                     HeightRequest="50" HorizontalOptions="CenterAndExpand" WidthRequest="200"
                     Command="{Binding GoToSignUpPageCommand}" />

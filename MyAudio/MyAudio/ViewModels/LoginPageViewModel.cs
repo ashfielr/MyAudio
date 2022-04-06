@@ -5,6 +5,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Input;
+    using MyAudio.AppShells;
     using MyAudio.Services;
     using MyAudio.Utilities;
     using MyAudio.Views;

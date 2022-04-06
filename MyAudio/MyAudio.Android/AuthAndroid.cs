@@ -17,6 +17,7 @@ using MyAudio.Droid;
 [assembly: Dependency(typeof(AuthAndroid))]
 namespace MyAudio.Droid
 {
+    // reference -  https://www.youtube.com/watch?v=7LPIOttwMXE
     public class AuthAndroid : IAuth
     {
         public string GetCurrentLoggedInUserID()
