@@ -14,13 +14,13 @@
                    VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
                     />
             <Entry Text="{Binding Email, Mode=TwoWay}" 
-                   HorizontalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand" Margin="30,0,30,0"
                    WidthRequest="350" />
             <Label Text="Password"
                    Style="{StaticResource SubtitleText}"
                    VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
             <Entry Text="{Binding Password, Mode=TwoWay}" IsPassword="True"
-                   HorizontalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand" Margin="30,0,30,0"
                    WidthRequest="350" />
             <Button Text="Sign Up" Style="{StaticResource CommonButtonStyle}"  Command="{Binding SignUpCommand}" 
                     HorizontalOptions="CenterAndExpand"
