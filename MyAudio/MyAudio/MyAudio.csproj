@@ -22,10 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="MainShell.xaml.cs">
+    <Compile Update="AppShells\MainShell.xaml.cs">
       <DependentUpon>MainShell.xaml</DependentUpon>
     </Compile>
-    <Compile Update="SecureMainShell.xaml.cs">
+    <Compile Update="AppShells\SecureMainShell.xaml.cs">
       <DependentUpon>SecureMainShell.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\AudioFilesPage.xaml.cs">
@@ -37,10 +37,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="MainShell.xaml">
+    <EmbeddedResource Update="AppShells\MainShell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="SecureMainShell.xaml">
+    <EmbeddedResource Update="AppShells\SecureMainShell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\AddPlaylistPage.xaml">

@@ -1,4 +1,4 @@
-﻿namespace MyAudio
+﻿namespace MyAudio.AppShells
 {
     using System;
     using System.Collections.Generic;
