@@ -18,7 +18,9 @@
         {
             InitializeComponent();
             BindingContext = IocProvider.ServiceProvider.GetService<MainShellViewModel>();
-            
+            (BindingContext as MainShellViewModel).Initialise();
+
+
             Routing.RegisterRoute("Playlists/AddPlaylist", typeof(AddPlaylistPage));
             Routing.RegisterRoute("Playlists/PlaylistDetails", typeof(PlaylistDetailsPage));
             Routing.RegisterRoute("CurrentPlayingAudioFilePage", typeof(CurrentPlayingAudioFilePage));
