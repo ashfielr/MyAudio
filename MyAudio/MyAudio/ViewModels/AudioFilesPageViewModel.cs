@@ -77,29 +77,20 @@
             PickOptions options = new PickOptions
             {
                 PickerTitle = "Please select an audio file.",
-                // FileTypes = customFileType,
             };
             try
             {
                 var result = await IocProvider.ServiceProvider.GetService<IFilePicker>().PickAsync(options);
-                string timestamp = DateTime.Now.Ticks.ToString();
-                string audioFilePath = await fileService.CopyMp3(result.FullPath, timestamp);
+                string timestampStr = DateTime.Now.Ticks.ToString();
+                string audioFilePath = await fileService.CopyMp3(result.FullPath, timestampStr);
                 if (result != null)
                 {
                     if (result.FileName.EndsWith("mp3", StringComparison.OrdinalIgnoreCase))
                     {
-                        using (var mp3 = new Mp3(result.FullPath))
-                        {
-                            Id3Tag tag = mp3.GetTag(Id3TagFamily.Version2X);
-                            List<Id3Version> id3v = new List<Id3Version>(mp3.AvailableTagVersions);
-                            byte[] image = tag.Pictures[0].PictureData;
-
-                            string location = "AudioFiles";
-                            string imageFilePath = await fileService.SaveImage(timestamp, image, location);
-                            AudioFile audioFile = new AudioFile(tag.Title, tag.Artists.ToString(), tag.Album, (int)mp3.Audio.Duration.TotalMilliseconds, imageFilePath, audioFilePath);
-                            await dataAccess.SaveAudioFileAsync(audioFile);
-                            this.AudioFilesListViewModel.AudioFiles.Add(new AudioFileViewModel(audioFile, audioPlayerService));
-                        }
+                        var audioFile = await GetID3AudioFileData(result, timestampStr);
+                        audioFile.FilePath = audioFilePath;
+                        await dataAccess.SaveAudioFileAsync(audioFile);
+                        this.AudioFilesListViewModel.AudioFiles.Add(new AudioFileViewModel(audioFile, audioPlayerService));
                     }
                 }
 
@@ -111,6 +102,44 @@
             }
 
             return null;
+        }
+
+        public async Task<AudioFile> GetID3AudioFileData(FileResult mp3FileResult, string timestampStr)
+        {
+            using (var mp3FileObj = new Mp3(mp3FileResult.FullPath))
+            {
+                Id3Tag tag = mp3FileObj.GetTag(Id3TagFamily.Version2X);
+                List<Id3Version> id3v = new List<Id3Version>(mp3FileObj.AvailableTagVersions);
+
+                string imageFilePath;
+                if (tag != null && tag.Pictures.Count > 0)
+                {
+                    byte[] image = tag.Pictures[0].PictureData;
+                    string location = "AudioFiles";
+                    imageFilePath = await fileService.SaveImage(timestampStr, image, location);
+                }
+                else
+                {
+                    imageFilePath = "clef_music_notes.png";
+                }
+
+                AudioFile audioFile = new AudioFile();
+                if (tag != null)
+                {
+                    audioFile.Title = string.IsNullOrEmpty(tag.Title) ? "Unknown" : tag.Title.ToString().Replace("\0", string.Empty);
+                    audioFile.Artist = string.IsNullOrEmpty(tag.Artists) ? "Unknown" : tag.Artists.ToString().Replace("\0", string.Empty);
+                    audioFile.AlbumName = string.IsNullOrEmpty(tag.Album) ? "Unknown" : tag.Album.ToString().Replace("\0", string.Empty);
+                }
+                else
+                {
+                    audioFile.Title = mp3FileResult.FileName;
+                    audioFile.Artist = "Unknown";
+                    audioFile.AlbumName = "Unknown";
+                }
+                audioFile.Duration = (int)mp3FileObj.Audio.Duration.TotalMilliseconds;
+                audioFile.Image = imageFilePath;
+                return audioFile;
+            }
         }
     }
 }

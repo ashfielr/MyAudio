@@ -46,7 +46,7 @@
         {
             OSAppTheme currentTheme = Application.Current.RequestedTheme;
 
-            SwitchThemeText = currentTheme == OSAppTheme.Dark ? "Dark mode" : "Light mode";
+            SwitchThemeText = currentTheme == OSAppTheme.Dark ? "Light mode" : "Dark mode";
             OnPropertyChanged(nameof(SwitchThemeText));
         }
     }
