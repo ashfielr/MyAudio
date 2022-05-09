@@ -28,4 +28,16 @@
     <ProjectReference Include="..\MyAudio\MyAudio\MyAudio.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="TestAudio\Full_ID3_Data.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestAudio\NoImage.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestAudio\No_ID3_Data.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
