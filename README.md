@@ -13,4 +13,6 @@ Users can capture images using their mobile device's camera and use the image as
 The app makes use of Firebase APIs for authentication (Firebase Authentication) and data storage (Firestore, Cloud Storage).
 
 ## Video and Use Case Diagram
+![image](https://user-images.githubusercontent.com/74021328/167608116-3a71a59b-14f1-427a-8540-88aeab29f9f7.png)
+
 https://livecoventryac-my.sharepoint.com/:f:/g/personal/ashfielr_uni_coventry_ac_uk/EvB7g1wcI09LmZaR3hSrYWMBArEjO3xuS_aak98HX3mo1Q?e=Fd0sJE
